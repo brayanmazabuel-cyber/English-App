@@ -1,0 +1,2004 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#040408">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="LingoBoom">
+<title>LingoBoom — English A1→C2</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════════════
+   LINGOBOOM — BENTO NEON DESIGN SYSTEM
+   Perfiles activos: Lingüista · UX/UI · Psicólogo
+   del hábito · Neuromkt · Gamification · Frontend
+   ════════════════════════════════════════════════════ */
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+:root{
+  /* Base */
+  --bg:#040408;--s1:#0a0a14;--s2:#10101e;--s3:#17172a;
+  /* Brand neon palette */
+  --pu:#6c63ff;--pk:#ff2d78;--mn:#00ffcc;--gd:#ffb800;
+  --sk:#4fc3f7;--gr:#00e676;--or:#ff6d00;--lv:#ce93d8;
+  /* Semantic */
+  --ok:var(--gr);--err:#ff5252;
+  /* Text */
+  --t1:#f0f0fa;--t2:#9090b8;--t3:#484870;
+  /* Borders & glass */
+  --b1:rgba(255,255,255,.07);--b2:rgba(255,255,255,.14);--b3:rgba(255,255,255,.22);
+  --gl1:rgba(255,255,255,.04);--gl2:rgba(255,255,255,.08);--gl3:rgba(255,255,255,.13);
+  /* Radii */
+  --r:18px;--rm:14px;--rs:10px;--rpill:30px;
+  /* Fonts */
+  --fn:'Nunito',sans-serif;--ff:'Fredoka One',cursive;
+  /* Glows */
+  --glow-pu:0 0 20px rgba(108,99,255,.45);
+  --glow-pk:0 0 20px rgba(255,45,120,.4);
+  --glow-mn:0 0 18px rgba(0,255,204,.35);
+  --glow-gd:0 0 16px rgba(255,184,0,.4);
+}
+
+/* ── FONTS ── */
+body{font-family:var(--fn);background:var(--bg);color:var(--t1);min-height:100vh;overflow-x:hidden;}
+
+/* ── AMBIENT ORBS (CSS-only, zero JS) ── */
+body::before,body::after{content:'';position:fixed;border-radius:50%;pointer-events:none;z-index:0;}
+body::before{width:55vw;height:55vw;max-width:380px;max-height:380px;top:-15%;left:-15%;background:radial-gradient(circle,rgba(108,99,255,.1) 0%,transparent 65%);animation:orb1 12s ease-in-out infinite;}
+body::after{width:50vw;height:50vw;max-width:340px;max-height:340px;bottom:-10%;right:-12%;background:radial-gradient(circle,rgba(255,45,120,.09) 0%,transparent 65%);animation:orb2 15s ease-in-out infinite;}
+@keyframes orb1{0%,100%{transform:translate(0,0) scale(1)}40%{transform:translate(6%,8%) scale(1.08)}70%{transform:translate(-4%,3%) scale(.94)}}
+@keyframes orb2{0%,100%{transform:translate(0,0) scale(1)}35%{transform:translate(-5%,-6%) scale(1.06)}65%{transform:translate(4%,2%) scale(.96)}}
+
+/* ── SCREENS ── */
+.screen{display:none;min-height:100vh;padding-bottom:86px;position:relative;z-index:1;}
+.screen.active{display:block;animation:scrIn .28s cubic-bezier(.34,1.4,.64,1);}
+@keyframes scrIn{from{opacity:0;transform:translateY(14px) scale(.975)}to{opacity:1;transform:none}}
+
+/* ── TOPBAR ── */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 20px 12px;position:sticky;top:0;z-index:20;backdrop-filter:blur(22px);background:rgba(4,4,8,.88);border-bottom:1px solid var(--b1);}
+.tb-title{font-family:var(--ff);font-size:1.15rem;background:linear-gradient(90deg,var(--mn),var(--pu));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.back-btn{background:var(--gl2);border:1px solid var(--b2);color:var(--t2);padding:8px 16px;border-radius:var(--rpill);cursor:pointer;font-family:var(--fn);font-weight:700;font-size:.8rem;transition:all .18s;}
+.back-btn:active{transform:scale(.91);background:var(--gl3);}
+
+/* ══════════════════════ HOME ══════════════════════ */
+
+/* Brand header */
+.home-header{padding:22px 20px 12px;position:relative;}
+.brand{display:flex;align-items:center;gap:9px;}
+.brand h1{font-family:var(--ff);font-size:2.1rem;background:linear-gradient(135deg,var(--mn) 0%,var(--pu) 45%,var(--pk) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+.brand-emoji{font-size:1.9rem;animation:rocket 2.2s ease-in-out infinite;}
+@keyframes rocket{0%,100%{transform:translateY(0) rotate(-10deg)}50%{transform:translateY(-9px) rotate(10deg)}}
+.home-sub{color:var(--t2);font-size:.82rem;font-weight:600;margin-top:3px;}
+
+/* Live pill */
+.live-pill{display:inline-flex;align-items:center;gap:7px;background:rgba(0,230,118,.09);border:1px solid rgba(0,230,118,.22);border-radius:var(--rpill);padding:5px 13px;margin-top:10px;font-size:.72rem;font-weight:700;color:var(--gr);}
+.live-dot{width:7px;height:7px;background:var(--gr);border-radius:50%;animation:livedot 1.3s ease-in-out infinite;}
+@keyframes livedot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)}}
+
+/* Streak card */
+.streak-card{margin:14px 20px 0;border-radius:var(--r);padding:16px 18px;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden;cursor:pointer;}
+.streak-card.hot{background:linear-gradient(135deg,rgba(255,109,0,.14),rgba(255,45,120,.1));border:1.5px solid rgba(255,109,0,.3);}
+.streak-card.cold{background:var(--gl1);border:1px solid var(--b1);}
+.streak-card::before{content:'';position:absolute;top:-20px;right:-20px;width:90px;height:90px;border-radius:50%;opacity:.16;pointer-events:none;background:radial-gradient(circle,#ff6d00,transparent);}
+.sc-left .sc-n{font-family:var(--ff);font-size:2.9rem;line-height:1;background:linear-gradient(135deg,#ff9500,#ff2d78);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sc-left .sc-l{font-size:.7rem;font-weight:700;color:var(--t2);margin-top:2px;}
+.sc-badge{font-size:.68rem;font-weight:800;display:inline-block;padding:2px 9px;border-radius:10px;margin-top:6px;}
+.sc-badge.on{background:rgba(0,230,118,.14);color:var(--gr);border:1px solid rgba(0,230,118,.24);}
+.sc-badge.off{background:rgba(255,82,82,.14);color:#ff5252;border:1px solid rgba(255,82,82,.24);}
+.sc-fire{font-size:3.6rem;animation:firef 1.7s ease-in-out infinite;flex-shrink:0;}
+@keyframes firef{0%,100%{transform:scale(1) rotate(-4deg)}33%{transform:scale(1.18) rotate(5deg)}66%{transform:scale(.93) rotate(-2deg)}}
+.sc-fire.cold{filter:grayscale(1) brightness(.45);animation:none;font-size:2.8rem;}
+
+/* XP + stats */
+.xp-stats-row{display:flex;align-items:center;gap:14px;padding:14px 20px;}
+/* Circular XP ring */
+.xp-ring{flex-shrink:0;position:relative;width:74px;height:74px;}
+.xp-ring svg{transform:rotate(-90deg);}
+.xr-bg{fill:none;stroke:rgba(255,255,255,.07);stroke-width:6;}
+.xr-fill{fill:none;stroke:url(#xrg);stroke-width:6;stroke-linecap:round;
+  stroke-dasharray:188.5;stroke-dashoffset:188.5;transition:stroke-dashoffset .9s cubic-bezier(.34,1.4,.64,1);}
+.xr-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;}
+.xr-val{font-family:var(--ff);font-size:.95rem;background:linear-gradient(135deg,var(--mn),var(--pu));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.xr-sub{font-size:.52rem;font-weight:800;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-top:2px;}
+/* Mini stats grid */
+.stats-g{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.stat-c{background:var(--gl1);border:1px solid var(--b1);border-radius:var(--rs);padding:9px 10px;text-align:center;position:relative;overflow:hidden;}
+.stat-c::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:2px 2px 0 0;}
+.stat-c:nth-child(1)::before{background:var(--mn);}
+.stat-c:nth-child(2)::before{background:var(--pu);}
+.stat-c:nth-child(3)::before{background:var(--pk);}
+.stat-c:nth-child(4)::before{background:var(--gd);}
+.sc-v{font-family:var(--ff);font-size:1.35rem;line-height:1.1;}
+.sc-l2{font-size:.58rem;color:var(--t2);font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-top:3px;}
+
+/* Hidden helpers the JS updates */
+#h-xpbar,#h-xpval{display:none;}
+
+/* Daily challenge card */
+.daily{margin:0 20px 14px;border-radius:var(--r);padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;position:relative;overflow:hidden;transition:transform .18s;background:linear-gradient(135deg,rgba(0,255,204,.06),rgba(76,195,247,.06));border:1.5px solid rgba(0,255,204,.18);}
+.daily:active{transform:scale(.97);}
+.daily-pulse{position:absolute;top:11px;right:11px;width:9px;height:9px;background:var(--mn);border-radius:50%;animation:dp 1.6s ease-in-out infinite;}
+@keyframes dp{0%,100%{box-shadow:0 0 0 0 rgba(0,255,204,.55)}70%{box-shadow:0 0 0 8px rgba(0,255,204,0)}}
+.daily-icon{font-size:2.1rem;flex-shrink:0;}
+.daily-text b{display:block;font-size:.9rem;font-weight:800;color:var(--mn);}
+.daily-text span{font-size:.72rem;color:var(--t2);}
+.daily-arrow{margin-left:auto;font-size:1.3rem;color:var(--mn);flex-shrink:0;}
+
+/* ── LEVEL STORIES (Instagram rings) ── */
+.sec-label{padding:4px 20px 10px;font-size:.66rem;font-weight:800;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;}
+.stories-row{display:flex;gap:13px;padding:0 20px 16px;overflow-x:auto;scrollbar-width:none;}
+.stories-row::-webkit-scrollbar{display:none;}
+.story{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;flex-shrink:0;transition:transform .2s;}
+.story:active{transform:scale(.88);}
+.story-ring{width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:2.5px;flex-shrink:0;}
+.story-ring.active{background:conic-gradient(var(--pu),var(--pk),var(--gd),var(--pu));}
+.story-ring.done{background:conic-gradient(var(--gr),var(--mn),var(--gr));}
+.story-ring.locked{background:var(--gl2);}
+.story-inner{width:100%;height:100%;background:var(--s2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.55rem;}
+.story-name{font-size:.62rem;font-weight:800;color:var(--t2);letter-spacing:.02em;}
+.story.active-lv .story-name{color:var(--mn);}
+
+/* ── QUICK ACTIONS 2×2 ── */
+.qa-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;padding:0 20px 16px;}
+.qa-card{background:var(--gl1);border:1px solid var(--b1);border-radius:var(--r);padding:17px 14px;cursor:pointer;display:flex;flex-direction:column;gap:8px;transition:all .2s;position:relative;overflow:hidden;text-align:left;}
+/* Color accent per card */
+.qa-card:nth-child(1){border-color:rgba(108,99,255,.22);}
+.qa-card:nth-child(2){border-color:rgba(255,45,120,.2);}
+.qa-card:nth-child(3){border-color:rgba(0,255,204,.18);}
+.qa-card:nth-child(4){border-color:rgba(255,184,0,.18);}
+.qa-card::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;opacity:0;transition:opacity .2s;}
+.qa-card:nth-child(1)::before{background:linear-gradient(135deg,rgba(108,99,255,.1),transparent);}
+.qa-card:nth-child(2)::before{background:linear-gradient(135deg,rgba(255,45,120,.09),transparent);}
+.qa-card:nth-child(3)::before{background:linear-gradient(135deg,rgba(0,255,204,.07),transparent);}
+.qa-card:nth-child(4)::before{background:linear-gradient(135deg,rgba(255,184,0,.07),transparent);}
+.qa-card:active{transform:scale(.95);}
+.qa-card:active::before{opacity:1;}
+.qa-icon{font-size:1.8rem;}
+.qa-t{font-weight:800;font-size:.88rem;}
+.qa-s{font-size:.7rem;color:var(--t2);}
+.qa-new{position:absolute;top:9px;right:9px;background:var(--pk);color:#fff;font-size:.57rem;font-weight:800;padding:2px 7px;border-radius:10px;letter-spacing:.04em;}
+
+/* ── BADGES ROW — fixed overflow bug ── */
+.badges-row{display:flex;gap:10px;padding:0 20px 22px;overflow-x:auto;scrollbar-width:none;}
+.badges-row::-webkit-scrollbar{display:none;}
+/* FIX: use min-width NOT fixed width, allow text to wrap */
+.badge-item{flex-shrink:0;text-align:center;min-width:68px;max-width:80px;display:flex;flex-direction:column;align-items:center;gap:4px;}
+.bi-icon{font-size:1.9rem;display:block;filter:grayscale(1) brightness(.4);transition:all .3s;}
+.badge-item.earned .bi-icon{filter:none;animation:bdgPop .45s cubic-bezier(.34,1.6,.64,1);}
+@keyframes bdgPop{0%{transform:scale(.3) rotate(-15deg)}80%{transform:scale(1.12) rotate(4deg)}100%{transform:scale(1) rotate(0)}}
+.bi-lbl{font-size:.58rem;color:var(--t3);font-weight:700;line-height:1.3;text-align:center;word-break:break-word;white-space:normal;max-width:76px;}
+.badge-item.earned .bi-lbl{color:var(--t2);}
+
+/* ══════════════════════ LEVELS ══════════════════════ */
+.levels-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px 20px 20px;}
+.lv-card{border-radius:var(--r);padding:18px 14px;cursor:pointer;transition:all .22s;position:relative;overflow:hidden;border:1.5px solid var(--b1);}
+.lv-card:active:not(.locked){transform:scale(.96);}
+.lv-card.locked{opacity:.35;cursor:not-allowed;}
+.lv-glow{position:absolute;top:-25px;right:-25px;width:90px;height:90px;border-radius:50%;opacity:.2;pointer-events:none;}
+.lv-icon{font-size:2.1rem;display:block;margin-bottom:9px;}
+.lv-name{font-family:var(--ff);font-size:1.25rem;line-height:1;}
+.lv-sub{font-size:.68rem;font-weight:600;color:var(--t2);margin-top:2px;}
+.lv-prog{font-size:.67rem;font-weight:700;margin-top:8px;}
+.lv-bar{height:5px;background:rgba(255,255,255,.09);border-radius:5px;margin-top:7px;overflow:hidden;}
+.lv-fill{height:100%;border-radius:5px;transition:width .8s cubic-bezier(.34,1.4,.64,1);position:relative;}
+.lv-fill::after{content:'';position:absolute;top:0;left:-80%;width:60%;height:100%;background:rgba(255,255,255,.3);animation:shimmer 3s ease-in-out infinite;}
+@keyframes shimmer{0%{left:-80%}100%{left:180%}}
+.lv-badge{position:absolute;top:11px;right:11px;font-size:.88rem;}
+
+.lv-a1{background:linear-gradient(145deg,rgba(0,230,118,.1),rgba(0,230,118,.04));border-color:rgba(0,230,118,.2)!important;}
+.lv-a1 .lv-name{color:#00e676;}.lv-a1 .lv-prog{color:#00e676;}.lv-a1 .lv-fill{background:linear-gradient(90deg,#00b248,#00e676);}.lv-a1 .lv-glow{background:#00e676;}
+.lv-a2{background:linear-gradient(145deg,rgba(79,195,247,.1),rgba(79,195,247,.04));border-color:rgba(79,195,247,.2)!important;}
+.lv-a2 .lv-name{color:#4fc3f7;}.lv-a2 .lv-prog{color:#4fc3f7;}.lv-a2 .lv-fill{background:linear-gradient(90deg,#0288d1,#4fc3f7);}.lv-a2 .lv-glow{background:#4fc3f7;}
+.lv-b1{background:linear-gradient(145deg,rgba(108,99,255,.13),rgba(108,99,255,.05));border-color:rgba(108,99,255,.24)!important;}
+.lv-b1 .lv-name{color:#a78bfa;}.lv-b1 .lv-prog{color:#a78bfa;}.lv-b1 .lv-fill{background:linear-gradient(90deg,#5b21b6,#a78bfa);}.lv-b1 .lv-glow{background:#6c63ff;}
+.lv-b2{background:linear-gradient(145deg,rgba(255,184,0,.1),rgba(255,184,0,.04));border-color:rgba(255,184,0,.2)!important;}
+.lv-b2 .lv-name{color:#ffb800;}.lv-b2 .lv-prog{color:#ffb800;}.lv-b2 .lv-fill{background:linear-gradient(90deg,#d97706,#ffb800);}.lv-b2 .lv-glow{background:#ffb800;}
+.lv-c1{background:linear-gradient(145deg,rgba(255,45,120,.12),rgba(255,109,0,.08));border-color:rgba(255,45,120,.22)!important;}
+.lv-c1 .lv-name{color:#ff6b9d;}.lv-c1 .lv-prog{color:#ff6b9d;}.lv-c1 .lv-fill{background:linear-gradient(90deg,#ff2d78,#ff6d00);}.lv-c1 .lv-glow{background:#ff2d78;}
+.lv-c2{background:linear-gradient(145deg,rgba(206,147,216,.12),rgba(108,99,255,.1));border-color:rgba(206,147,216,.22)!important;}
+.lv-c2 .lv-name{color:#ce93d8;}.lv-c2 .lv-prog{color:#ce93d8;}.lv-c2 .lv-fill{background:linear-gradient(90deg,#7b1fa2,#ce93d8);}.lv-c2 .lv-glow{background:#ce93d8;}
+
+/* ══════════════════════ LESSONS ══════════════════════ */
+.lesson-list{padding:8px 20px;}
+.lesson-item{display:flex;align-items:center;gap:13px;background:var(--gl1);border:1px solid var(--b1);border-radius:var(--rm);padding:13px 15px;margin-bottom:9px;cursor:pointer;transition:all .18s;position:relative;overflow:hidden;}
+.lesson-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px 0 0 3px;}
+.lesson-item.done::before{background:linear-gradient(180deg,var(--gr),var(--mn));}
+.lesson-item.next::before{background:linear-gradient(180deg,var(--pu),var(--pk));}
+.lesson-item.next{border-color:rgba(108,99,255,.18);background:rgba(108,99,255,.04);}
+.lesson-item:active:not(.locked){transform:scale(.97);}
+.lesson-item.locked{opacity:.3;cursor:not-allowed;}
+.li-icon{font-size:1.45rem;min-width:36px;text-align:center;}
+.li-info{flex:1;}
+.li-title{font-weight:800;font-size:.88rem;}
+.li-sub{font-size:.67rem;color:var(--t2);margin-top:2px;}
+.li-check{font-size:.88rem;flex-shrink:0;}
+
+/* ══════════════════════ THEORY ══════════════════════ */
+.theory-card{background:var(--gl2);border:1px solid var(--b2);border-radius:var(--r);padding:20px;margin:12px 20px;line-height:1.8;font-size:.87rem;}
+.theory-card b{color:var(--mn);}
+.theory-card i{color:var(--t2);}
+.examples-wrap{padding:0 20px 14px;display:flex;flex-wrap:wrap;gap:7px;}
+.ex-chip{background:rgba(0,255,204,.07);border:1px solid rgba(0,255,204,.17);color:var(--mn);border-radius:var(--rpill);padding:6px 14px;font-size:.78rem;font-style:italic;}
+
+/* ══════════════════════ BUTTONS ══════════════════════ */
+.btn-glow{display:block;width:calc(100% - 40px);margin:10px 20px;padding:16px;background:linear-gradient(135deg,var(--pu),var(--pk));color:#fff;font-family:var(--fn);font-weight:800;font-size:.93rem;border:none;border-radius:var(--rm);cursor:pointer;box-shadow:0 4px 22px rgba(108,99,255,.38),0 1px 0 rgba(255,255,255,.12) inset;transition:all .2s;position:relative;overflow:hidden;}
+.btn-glow::after{content:'';position:absolute;top:0;left:-100%;width:55%;height:100%;background:rgba(255,255,255,.18);transform:skewX(-18deg);animation:btnsh 3.5s ease-in-out infinite;}
+@keyframes btnsh{0%,55%{left:-100%}100%{left:200%}}
+.btn-glow:active{transform:scale(.96);box-shadow:0 2px 10px rgba(108,99,255,.2);}
+.btn-glow.green{background:linear-gradient(135deg,#00b248,#00e676);box-shadow:0 4px 18px rgba(0,230,118,.32);}
+.btn-flat{display:block;width:calc(100% - 40px);margin:7px 20px;padding:14px;background:var(--gl2);border:1.5px solid var(--b2);color:var(--t1);font-family:var(--fn);font-weight:700;font-size:.88rem;border-radius:var(--rm);cursor:pointer;transition:all .2s;}
+.btn-flat:active{transform:scale(.96);background:var(--gl3);}
+
+/* ══════════════════════ EXERCISE ══════════════════════ */
+.ex-topbar{display:flex;align-items:center;gap:11px;padding:15px 20px 10px;}
+.ex-close{background:var(--gl2);border:1px solid var(--b1);color:var(--t2);width:37px;height:37px;border-radius:50%;cursor:pointer;font-size:.95rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;}
+.ex-close:active{transform:scale(.85);}
+.ex-pbar{flex:1;height:9px;background:rgba(255,255,255,.07);border-radius:9px;overflow:hidden;}
+.ex-pbar-fill{height:100%;background:linear-gradient(90deg,var(--pu),var(--mn));border-radius:9px;transition:width .55s cubic-bezier(.34,1.4,.64,1);}
+.ex-count{font-size:.73rem;font-weight:700;color:var(--t2);flex-shrink:0;}
+.ex-hearts{font-size:.85rem;flex-shrink:0;letter-spacing:2px;}
+
+.ex-card{background:var(--gl2);border:1px solid var(--b2);border-radius:var(--r);margin:8px 20px;padding:20px 18px;min-height:170px;}
+.ex-pill{display:inline-block;font-size:.64rem;font-weight:800;padding:4px 12px;border-radius:20px;margin-bottom:13px;text-transform:uppercase;letter-spacing:.06em;}
+.ex-q{font-size:1.06rem;font-weight:700;line-height:1.55;margin-bottom:15px;}
+
+/* Fill input */
+.fill-inp{width:100%;background:rgba(255,255,255,.05);border:2px solid var(--b2);border-radius:var(--rm);padding:13px 17px;color:var(--t1);font-family:var(--fn);font-size:.93rem;font-weight:700;outline:none;transition:all .2s;}
+.fill-inp:focus{border-color:var(--pu);background:rgba(108,99,255,.08);box-shadow:0 0 0 3px rgba(108,99,255,.14);}
+.fill-inp.ok{border-color:var(--gr)!important;background:rgba(0,230,118,.07)!important;box-shadow:0 0 0 3px rgba(0,230,118,.12);}
+.fill-inp.err{border-color:#ff5252!important;background:rgba(255,82,82,.07)!important;animation:shk .38s ease;}
+@keyframes shk{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+
+/* Multiple choice */
+.mc-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.mc-btn{background:var(--gl1);border:1.5px solid var(--b1);border-radius:var(--rs);padding:13px 9px;color:var(--t1);font-family:var(--fn);font-weight:700;font-size:.8rem;cursor:pointer;transition:all .16s;text-align:center;line-height:1.3;}
+.mc-btn:active:not(:disabled){transform:scale(.91);}
+.mc-btn.ok{background:rgba(0,230,118,.13);border-color:var(--gr);color:var(--gr);box-shadow:0 0 12px rgba(0,230,118,.2);}
+.mc-btn.err{background:rgba(255,82,82,.13);border-color:#ff5252;color:#ff5252;}
+.mc-btn.reveal{background:rgba(0,230,118,.07);border-color:var(--gr);}
+
+/* True/False */
+.tf-row{display:flex;gap:11px;}
+.tf-btn{flex:1;background:var(--gl1);border:1.5px solid var(--b1);border-radius:var(--rm);padding:17px;color:var(--t1);font-family:var(--fn);font-weight:800;font-size:1.05rem;cursor:pointer;transition:all .16s;text-align:center;}
+.tf-btn:active:not(:disabled){transform:scale(.91);}
+.tf-btn.ok{background:rgba(0,230,118,.13);border-color:var(--gr);color:var(--gr);box-shadow:0 0 12px rgba(0,230,118,.2);}
+.tf-btn.err{background:rgba(255,82,82,.13);border-color:#ff5252;color:#ff5252;}
+.tf-btn.reveal{background:rgba(0,230,118,.07);border-color:var(--gr);}
+
+/* Word order */
+.word-bank{display:flex;flex-wrap:wrap;gap:7px;margin-top:4px;}
+.w-chip{background:var(--gl2);border:1.5px solid var(--b2);border-radius:var(--rs);padding:8px 13px;font-family:var(--fn);font-weight:700;font-size:.8rem;cursor:pointer;color:var(--t1);transition:all .13s;}
+.w-chip:active:not(.used){transform:scale(.88);}
+.w-chip.used{opacity:.2;cursor:not-allowed;}
+.order-drop{min-height:50px;background:rgba(108,99,255,.06);border:2px dashed rgba(108,99,255,.24);border-radius:var(--rm);padding:10px 13px;margin-top:11px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;transition:border-color .2s;}
+.ow-chip{background:rgba(108,99,255,.2);border:1.5px solid rgba(108,99,255,.4);border-radius:var(--rs);padding:6px 11px;cursor:pointer;font-family:var(--fn);font-size:.79rem;font-weight:700;color:#c4b5fd;transition:all .13s;}
+.ow-chip:active{transform:scale(.88);}
+.order-ph{font-size:.78rem;color:var(--t3);font-style:italic;font-weight:600;}
+
+/* Feedback */
+.feedback{margin:10px 20px;padding:13px 17px;border-radius:var(--rm);font-weight:700;font-size:.84rem;display:none;animation:fdin .22s cubic-bezier(.34,1.4,.64,1);}
+@keyframes fdin{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:none}}
+.feedback.ok{background:rgba(0,230,118,.1);border:1.5px solid rgba(0,230,118,.25);color:#4ade80;}
+.feedback.no{background:rgba(255,82,82,.1);border:1.5px solid rgba(255,82,82,.25);color:#f87171;}
+.hint-txt{font-size:.71rem;color:var(--t3);padding:2px 0 0 20px;font-style:italic;display:none;}
+
+/* ══════════════════════ RESULT ══════════════════════ */
+.result-wrap{padding:36px 20px;text-align:center;}
+.res-emoji{font-size:5.2rem;display:block;margin-bottom:10px;animation:rPop .5s cubic-bezier(.34,1.6,.64,1);}
+@keyframes rPop{from{transform:scale(.1) rotate(-30deg)}80%{transform:scale(1.12) rotate(4deg)}to{transform:scale(1)}}
+.res-title{font-family:var(--ff);font-size:2.1rem;margin-bottom:5px;background:linear-gradient(135deg,var(--pu),var(--pk));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.res-desc{color:var(--t2);font-size:.86rem;margin-bottom:18px;}
+.xp-pill{display:inline-block;background:linear-gradient(135deg,var(--gd),var(--or));color:#000;font-family:var(--ff);font-size:1.25rem;padding:10px 26px;border-radius:var(--rpill);margin-bottom:22px;box-shadow:0 4px 18px rgba(255,184,0,.38);animation:xpin .6s .28s cubic-bezier(.34,1.4,.64,1) both;}
+@keyframes xpin{from{opacity:0;transform:translateY(22px) scale(.7)}to{opacity:1;transform:none}}
+.res-stats{background:var(--gl2);border:1px solid var(--b2);border-radius:var(--r);padding:16px;margin:0 0 20px;}
+.res-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--b1);font-size:.8rem;}
+.res-row:last-child{border:none;padding-bottom:0;}
+.res-row span:first-child{color:var(--t2);font-weight:600;}
+.res-row span:last-child{color:var(--mn);font-weight:800;}
+
+/* ══════════════════════ CHAT ══════════════════════ */
+.chat-messages{padding:14px 20px;display:flex;flex-direction:column;gap:10px;min-height:calc(100vh - 285px);}
+.msg{max-width:87%;padding:11px 15px;border-radius:17px;font-size:.83rem;line-height:1.55;font-weight:600;animation:msgIn .2s ease;}
+@keyframes msgIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.msg.user{align-self:flex-end;background:linear-gradient(135deg,var(--pu),var(--pk));color:#fff;border-bottom-right-radius:4px;box-shadow:0 3px 14px rgba(108,99,255,.28);}
+.msg.ai{align-self:flex-start;background:var(--gl2);border:1px solid var(--b2);border-bottom-left-radius:4px;}
+.ai-tag{font-size:.6rem;font-weight:800;color:var(--mn);margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em;}
+.chat-quick{display:flex;flex-wrap:wrap;gap:6px;padding:8px 20px 5px;}
+.cq-btn{background:rgba(0,255,204,.07);border:1px solid rgba(0,255,204,.18);color:var(--mn);border-radius:var(--rpill);padding:5px 12px;font-family:var(--fn);font-size:.7rem;font-weight:700;cursor:pointer;transition:all .14s;white-space:nowrap;}
+.cq-btn:active{transform:scale(.9);background:rgba(0,255,204,.14);}
+.chat-bar{position:sticky;bottom:0;background:rgba(4,4,8,.95);backdrop-filter:blur(22px);padding:10px 20px 14px;border-top:1px solid var(--b1);}
+.chat-row{display:flex;gap:9px;}
+.chat-input{flex:1;background:var(--gl2);border:1.5px solid var(--b2);border-radius:var(--rm);padding:12px 16px;color:var(--t1);font-family:var(--fn);font-size:.84rem;outline:none;transition:border .2s;}
+.chat-input:focus{border-color:var(--pu);}
+.chat-send-btn{background:linear-gradient(135deg,var(--pu),var(--pk));border:none;border-radius:var(--rm);padding:12px 18px;cursor:pointer;font-size:1rem;transition:all .18s;box-shadow:0 3px 14px rgba(108,99,255,.32);}
+.chat-send-btn:active{transform:scale(.88);}
+.chat-mic-btn{background:var(--gl2);border:1.5px solid var(--b2);border-radius:var(--rm);padding:12px 14px;cursor:pointer;font-size:1rem;transition:all .18s;color:var(--t2);flex-shrink:0;}
+.chat-mic-btn:active{transform:scale(.88);}
+.chat-mic-btn.listening{background:rgba(255,45,120,.18);border-color:rgba(255,45,120,.5);animation:chatMicPulse 1s ease-in-out infinite;}
+@keyframes chatMicPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,45,120,.4)}50%{box-shadow:0 0 0 8px rgba(255,45,120,0)}}
+
+/* ══════════════════════ SPEAKING ══════════════════════ */
+.speak-wrap{padding:20px;text-align:center;}
+.speak-lv-tag{display:inline-block;background:rgba(108,99,255,.2);border:1px solid rgba(108,99,255,.3);color:var(--lv);font-size:.67rem;font-weight:800;padding:3px 12px;border-radius:var(--rpill);margin-bottom:11px;}
+.speak-phrase{font-size:1.28rem;font-weight:800;color:var(--t1);margin-bottom:5px;line-height:1.4;}
+.speak-trans{font-size:.8rem;color:var(--t2);margin-bottom:22px;}
+.mic-circle{width:108px;height:108px;border-radius:50%;background:linear-gradient(135deg,var(--pu),var(--pk));border:none;margin:0 auto 17px;display:flex;align-items:center;justify-content:center;font-size:2.8rem;cursor:pointer;transition:all .2s;box-shadow:0 8px 30px rgba(108,99,255,.42);}
+.mic-circle.on{background:linear-gradient(135deg,var(--pk),var(--or));animation:micPl 1s ease-in-out infinite;}
+@keyframes micPl{0%,100%{box-shadow:0 0 0 0 rgba(255,45,120,.5)}50%{box-shadow:0 0 0 22px rgba(255,45,120,0)}}
+.mic-status{font-size:.78rem;color:var(--t2);font-weight:600;margin-bottom:13px;}
+.speak-result{min-height:44px;font-size:.88rem;font-weight:700;margin-bottom:13px;}
+
+/* ══════════════════════ VOCAB ══════════════════════ */
+.vocab-tabs{display:flex;gap:7px;padding:10px 20px;overflow-x:auto;scrollbar-width:none;}
+.vocab-tabs::-webkit-scrollbar{display:none;}
+.vtab{background:var(--gl2);border:1.5px solid var(--b1);color:var(--t2);padding:7px 14px;border-radius:var(--rpill);cursor:pointer;font-family:var(--fn);font-size:.73rem;font-weight:700;white-space:nowrap;transition:all .18s;}
+.vtab:active{transform:scale(.9);}
+.vtab.active{border-color:var(--mn);color:var(--mn);background:rgba(0,255,204,.08);box-shadow:0 0 10px rgba(0,255,204,.14);}
+.fc-area{padding:0 20px 16px;}
+.fc-hint{font-size:.69rem;color:var(--t3);text-align:center;margin-bottom:9px;}
+/* Flashcard */
+.fc-card{background:var(--gl2);border:2px solid var(--b2);border-radius:var(--r);padding:38px 20px;min-height:196px;cursor:pointer;transition:all .24s;text-align:center;position:relative;overflow:hidden;}
+.fc-card::before{content:'';position:absolute;top:-36px;right:-36px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(108,99,255,.18),transparent 70%);pointer-events:none;}
+.fc-card:active{transform:scale(.97);}
+.fc-card.flipped{border-color:rgba(0,255,204,.28);background:rgba(0,255,204,.03);box-shadow:0 0 20px rgba(0,255,204,.08);}
+/* These text classes are set by JS via innerHTML */
+.fc-trans{font-family:var(--ff);font-size:1.65rem;color:var(--mn);}
+.fc-pron{font-size:.86rem;color:var(--gd);margin-top:6px;}
+.fc-example{font-size:.79rem;color:var(--t2);font-style:italic;margin-top:9px;line-height:1.5;}
+.fc-nav{display:flex;align-items:center;justify-content:space-between;margin-top:11px;}
+.fc-nav-btn{background:var(--gl2);border:1px solid var(--b2);color:var(--t1);padding:10px 18px;border-radius:var(--rpill);cursor:pointer;font-family:var(--fn);font-weight:700;font-size:.79rem;transition:all .17s;}
+.fc-nav-btn:active{transform:scale(.9);}
+.fc-count-txt{font-size:.79rem;color:var(--t2);font-weight:700;}
+
+/* ══════════════════════ BOTTOM NAV ══════════════════════ */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(4,4,8,.97);border-top:1px solid var(--b1);display:flex;padding:5px 0 12px;backdrop-filter:blur(24px);z-index:50;}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;padding:7px 4px;cursor:pointer;border:none;background:none;color:var(--t3);font-family:var(--fn);font-size:.57rem;font-weight:800;transition:all .2s;position:relative;}
+.nav-btn .ni{font-size:1.25rem;display:block;margin-bottom:3px;transition:all .2s;}
+.nav-btn.active{color:var(--mn);}
+.nav-btn.active .ni{transform:scale(1.22);filter:drop-shadow(0 0 6px var(--mn));}
+
+/* ══════════════════════ MODALS ══════════════════════ */
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;align-items:flex-end;justify-content:center;}
+.modal.show{display:flex;animation:mIn .28s ease;}
+@keyframes mIn{from{opacity:0}to{opacity:1}}
+.modal-sheet{background:var(--s2);border:1px solid var(--b2);border-radius:26px 26px 0 0;padding:22px 22px 38px;width:100%;max-width:500px;animation:shUp .3s cubic-bezier(.34,1.4,.64,1);}
+@keyframes shUp{from{transform:translateY(100%)}to{transform:none}}
+.m-handle{width:38px;height:4px;background:var(--b2);border-radius:4px;margin:0 auto 18px;}
+.modal-sheet h3{font-family:var(--ff);font-size:1.25rem;margin-bottom:8px;}
+.modal-sheet p{font-size:.82rem;color:var(--t2);margin-bottom:18px;line-height:1.6;}
+
+/* ══════════════════════ EFFECTS ══════════════════════ */
+.toast{position:fixed;top:22px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--pu),var(--pk));color:#fff;padding:11px 22px;border-radius:var(--rpill);font-family:var(--fn);font-weight:800;font-size:.83rem;z-index:200;pointer-events:none;white-space:nowrap;box-shadow:0 7px 24px rgba(108,99,255,.45);animation:tIn .38s cubic-bezier(.34,1.4,.64,1),tOut .38s 2.6s ease forwards;}
+@keyframes tIn{from{opacity:0;transform:translateX(-50%) translateY(-18px) scale(.8)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
+@keyframes tOut{to{opacity:0;transform:translateX(-50%) translateY(-16px)}}
+
+.confetti-wrap{position:fixed;inset:0;pointer-events:none;z-index:150;overflow:hidden;}
+.cp{position:absolute;animation:cfall linear forwards;}
+@keyframes cfall{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+
+.xp-float{position:fixed;font-family:var(--ff);font-size:1.45rem;color:var(--gd);pointer-events:none;z-index:180;text-shadow:0 0 14px rgba(255,184,0,.6);animation:xfUp 1s ease forwards;}
+@keyframes xfUp{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-80px) scale(1.4)}}
+
+.streak-fire{font-size:3.6rem;animation:firef 1.7s ease-in-out infinite;}
+
+/* ══════════════════════ RESPONSIVE ══════════════════════ */
+@media(min-width:500px){
+  .screen{max-width:480px;margin:0 auto;}
+  .bottom-nav{max-width:480px;left:50%;transform:translateX(-50%);}
+}
+</style>
+</head>
+<body>
+
+<!-- ════ HOME ════ -->
+<div id="s-home" class="screen active">
+  <div class="home-header">
+    <div class="brand">
+      <h1>LingoBoom</h1>
+      <span class="brand-emoji">🚀</span>
+    </div>
+    <p class="home-sub">De cero a fluido — A1 hasta C2 💥</p>
+    <div class="live-pill"><span class="live-dot"></span><span id="h-social">🔥 341 estudiantes activos ahora</span></div>
+  </div>
+
+  <!-- Streak -->
+  <div class="streak-card hot" id="streak-card">
+    <div class="sc-left">
+      <div class="sc-n" id="h-streak">0</div>
+      <div class="sc-l">días seguidos</div>
+      <div class="sc-badge on" id="streak-badge">¡Racha activa!</div>
+    </div>
+    <div class="sc-fire" id="h-fire">🔥</div>
+  </div>
+
+  <!-- XP ring + mini stats -->
+  <div class="xp-stats-row">
+    <div class="xp-ring">
+      <svg width="74" height="74" viewBox="0 0 74 74">
+        <defs>
+          <linearGradient id="xrg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#6c63ff"/>
+            <stop offset="100%" stop-color="#00ffcc"/>
+          </linearGradient>
+        </defs>
+        <circle class="xr-bg" cx="37" cy="37" r="31"/>
+        <circle class="xr-fill" id="xr-circle" cx="37" cy="37" r="31"
+          stroke-dasharray="194.8" stroke-dashoffset="194.8"/>
+      </svg>
+      <div class="xr-inner">
+        <span class="xr-val" id="h-xp">0</span>
+        <span class="xr-sub">XP</span>
+      </div>
+    </div>
+    <div class="stats-g">
+      <div class="stat-c"><div class="sc-v" id="h-streak2" style="color:var(--gd)">0</div><div class="sc-l2">🔥 Racha</div></div>
+      <div class="stat-c"><div class="sc-v" id="h-lessons" style="color:var(--pu)">0</div><div class="sc-l2">📖 Lecc.</div></div>
+      <div class="stat-c"><div class="sc-v" id="h-level" style="color:var(--pk)">A1</div><div class="sc-l2">🎯 Nivel</div></div>
+      <div class="stat-c"><div class="sc-v" id="h-pct" style="color:var(--mn)">0%</div><div class="sc-l2">📊 Total</div></div>
+    </div>
+  </div>
+  <!-- Hidden XP helpers required by JS -->
+  <span id="h-xpval" style="display:none"></span>
+  <div id="h-xpbar" style="display:none;width:0%"></div>
+
+  <!-- Daily challenge -->
+  <div class="daily" onclick="goScreen('s-levels')">
+    <div class="daily-pulse"></div>
+    <span class="daily-icon">⚡</span>
+    <div class="daily-text"><b>Desafío del día</b><span id="daily-desc">Completa 1 lección y gana XP extra</span></div>
+    <span class="daily-arrow">›</span>
+  </div>
+
+  <!-- Level stories -->
+  <div class="sec-label">Tu camino</div>
+  <div class="stories-row" id="stories-row"></div>
+
+  <!-- Quick actions -->
+  <div class="sec-label">Aprende</div>
+  <div class="qa-grid">
+    <button class="qa-card" onclick="goScreen('s-levels')">
+      <span class="qa-icon">📊</span>
+      <div class="qa-t">Niveles</div>
+      <div class="qa-s">A1 – C2</div>
+      <span class="qa-new">Nuevo</span>
+    </button>
+    <button class="qa-card" onclick="goScreen('s-chat')">
+      <span class="qa-icon">🤖</span>
+      <div class="qa-t">Chat IA</div>
+      <div class="qa-s">Tutor 24/7</div>
+    </button>
+    <button class="qa-card" onclick="goScreen('s-speaking')">
+      <span class="qa-icon">🎤</span>
+      <div class="qa-t">Speaking</div>
+      <div class="qa-s">Practica voz</div>
+    </button>
+    <button class="qa-card" onclick="goScreen('s-vocab')">
+      <span class="qa-icon">📚</span>
+      <div class="qa-t">Vocab</div>
+      <div class="qa-s">Flashcards</div>
+    </button>
+  </div>
+
+  <!-- Badges — FIXED: no fixed width, text wraps properly -->
+  <div class="sec-label">Logros</div>
+  <div class="badges-row" id="badges-scroll"></div>
+</div>
+
+<!-- ════ LEVELS ════ -->
+<div id="s-levels" class="screen">
+  <div class="topbar">
+    <button class="back-btn" onclick="goScreen('s-home')">← Volver</button>
+    <span class="tb-title">Niveles</span><div></div>
+  </div>
+  <div class="levels-grid" id="levels-grid"></div>
+</div>
+
+<!-- ════ LESSONS ════ -->
+<div id="s-lessons" class="screen">
+  <div class="topbar">
+    <button class="back-btn" onclick="goScreen('s-levels')">← Volver</button>
+    <span class="tb-title" id="lessons-title">Lecciones</span><div></div>
+  </div>
+  <div class="lesson-list" id="lesson-list"></div>
+</div>
+
+<!-- ════ THEORY ════ -->
+<div id="s-theory" class="screen">
+  <div class="topbar">
+    <button class="back-btn" id="theory-back">← Volver</button>
+    <span class="tb-title" id="theory-title">Teoría</span><div></div>
+  </div>
+  <div class="theory-card" id="theory-body"></div>
+  <div class="sec-label" style="padding-top:14px">Ejemplos</div>
+  <div class="examples-wrap" id="theory-examples"></div>
+  <button class="btn-glow" onclick="startExercises()">🏋️ ¡Practicar ahora!</button>
+  <button class="btn-flat" onclick="goScreen('s-vocab')">📚 Ver vocabulario</button>
+</div>
+
+<!-- ════ EXERCISE ════ -->
+<div id="s-exercise" class="screen">
+  <div class="ex-topbar">
+    <button class="ex-close" onclick="confirmLeave()">✕</button>
+    <div class="ex-pbar"><div class="ex-pbar-fill" id="ex-fill"></div></div>
+    <span class="ex-count" id="ex-count">1/6</span>
+    <span class="ex-hearts" id="ex-hearts">❤️❤️❤️</span>
+  </div>
+  <div class="ex-card" id="ex-card"></div>
+  <div class="feedback" id="feedback"></div>
+  <div class="hint-txt" id="hint-txt"></div>
+  <button class="btn-glow" id="btn-check" onclick="checkAnswer()">Verificar ✓</button>
+  <button class="btn-glow green" id="btn-next" onclick="nextExercise()" style="display:none">Siguiente →</button>
+</div>
+
+<!-- ════ RESULT ════ -->
+<div id="s-result" class="screen">
+  <div class="result-wrap">
+    <span class="res-emoji" id="res-emoji">🎉</span>
+    <div class="res-title" id="res-title">¡Excelente!</div>
+    <div class="res-desc" id="res-desc"></div>
+    <div class="xp-pill" id="res-xp">+50 XP</div>
+    <div class="res-stats">
+      <div class="res-row"><span>✅ Correctas</span><span id="res-score">0/6</span></div>
+      <div class="res-row"><span>🎯 Precisión</span><span id="res-pct">0%</span></div>
+      <div class="res-row"><span>⭐ XP ganado</span><span id="res-xp2">+0</span></div>
+    </div>
+    <button class="btn-glow" onclick="startExercises()">🔄 Repetir lección</button>
+    <button class="btn-flat" onclick="goScreen('s-lessons')">📖 Volver a lecciones</button>
+    <button class="btn-flat" onclick="goScreen('s-home')">🏠 Inicio</button>
+  </div>
+</div>
+
+<!-- ════ CHAT ════ -->
+<div id="s-chat" class="screen">
+  <div class="topbar">
+    <button class="back-btn" onclick="goScreen('s-home')">← Volver</button>
+    <span class="tb-title">🤖 Tutor IA</span>
+    <button id="tts-toggle" onclick="toggleTTS()" title="Activar/desactivar voz del AI" style="background:rgba(0,255,204,.1);border:1.5px solid rgba(0,255,204,.25);color:var(--mn);padding:7px 12px;border-radius:20px;cursor:pointer;font-size:.75rem;font-weight:800;font-family:var(--fn);transition:all .2s;">🔊 Voz ON</button>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="msg ai"><div class="ai-tag">LingoBoom AI</div>¡Hola! 👋 Soy tu tutor personal.<br><br>Puedo <b>explicar gramática</b>, <b>corregir frases</b> y darte <b>mini quizzes</b>. Sin cobros ni internet extra 😊<br><br>Toca una sugerencia 👇</div>
+  </div>
+  <div class="chat-quick">
+    <button class="cq-btn" onclick="quickChat('Explain present perfect')">Present Perfect</button>
+    <button class="cq-btn" onclick="quickChat('Explain conditionals')">Conditionals</button>
+    <button class="cq-btn" onclick="quickChat('quiz')">🎯 Quiz</button>
+    <button class="cq-btn" onclick="quickChat('tips')">💡 Tips</button>
+    <button class="cq-btn" onclick="quickChat('Explain passive voice')">Passive</button>
+    <button class="cq-btn" onclick="quickChat('Explain wish')">Wish</button>
+    <button class="cq-btn" onclick="quickChat('Explain subjunctive')">Subjunctive</button>
+  </div>
+  <div class="chat-bar">
+    <div class="chat-row">
+      <button class="chat-mic-btn" id="chat-mic-btn" onclick="toggleChatMic()" title="Hablar para enviar mensaje">🎤</button>
+      <input class="chat-input" id="chat-input" placeholder="Escribe o usa el 🎤..." onkeydown="if(event.key==='Enter')sendChat()">
+      <button class="chat-send-btn" onclick="sendChat()">➤</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ SPEAKING ════ -->
+<div id="s-speaking" class="screen">
+  <div class="topbar">
+    <button class="back-btn" onclick="goScreen('s-home')">← Volver</button>
+    <span class="tb-title">🎤 Speaking</span><div></div>
+  </div>
+  <div class="speak-wrap">
+    <div class="speak-lv-tag" id="speak-lv">A1</div>
+    <p style="font-size:.77rem;color:var(--t2);margin-bottom:12px">Repite esta frase en inglés:</p>
+    <div class="speak-phrase" id="speak-phrase">Loading…</div>
+    <div class="speak-trans" id="speak-trans"></div>
+    <button class="mic-circle" id="mic-btn" onclick="toggleListening()"><span id="mic-icon">🎙️</span></button>
+    <div class="mic-status" id="mic-status">Toca para hablar</div>
+    <div class="speak-result" id="speak-result"></div>
+    <button class="btn-flat" onclick="nextPhrase()">⏭ Siguiente frase</button>
+    <div style="margin:8px 20px 0;background:var(--gl2);border:1px solid var(--b1);border-radius:var(--rm);padding:13px;">
+      <div style="font-size:.71rem;color:var(--t2);margin-bottom:8px">ℹ️ Chrome/Edge recomendado. O escribe:</div>
+      <input class="fill-inp" id="speak-text" placeholder="Escribe la frase aquí...">
+      <button class="btn-flat" onclick="checkSpokenText()" style="margin:8px 0 0">Verificar texto ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ VOCAB ════ -->
+<div id="s-vocab" class="screen">
+  <div class="topbar">
+    <button class="back-btn" onclick="goScreen('s-home')">← Volver</button>
+    <span class="tb-title">📚 Flashcards</span><div></div>
+  </div>
+  <div class="vocab-tabs">
+    <button class="vtab active" id="vbtn-A1" onclick="setVocabLevel('A1')">🌱 A1</button>
+    <button class="vtab" id="vbtn-A2" onclick="setVocabLevel('A2')">📘 A2</button>
+    <button class="vtab" id="vbtn-B1" onclick="setVocabLevel('B1')">⚡ B1</button>
+    <button class="vtab" id="vbtn-B2" onclick="setVocabLevel('B2')">🌟 B2</button>
+    <button class="vtab" id="vbtn-C1" onclick="setVocabLevel('C1')">🔥 C1</button>
+    <button class="vtab" id="vbtn-C2" onclick="setVocabLevel('C2')">💎 C2</button>
+  </div>
+  <div class="fc-area">
+    <p class="fc-hint">👆 Toca la tarjeta para ver la traducción</p>
+    <div class="fc-card" id="fc-card" onclick="flipCard()">
+      <div id="fc-word" style="font-family:var(--ff);font-size:2.45rem;color:var(--t1);line-height:1.1;"></div>
+      <div id="fc-pos" style="font-size:.69rem;color:var(--t3);font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin-top:8px;"></div>
+    </div>
+    <div class="fc-nav">
+      <button class="fc-nav-btn" onclick="prevCard()">← Anterior</button>
+      <span class="fc-count-txt" id="fc-count">1/20</span>
+      <button class="fc-nav-btn" onclick="nextCard()">Siguiente →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ MODAL LEAVE ════ -->
+<div class="modal" id="modal-leave">
+  <div class="modal-sheet">
+    <div class="m-handle"></div>
+    <h3>⚠️ ¿Salir del ejercicio?</h3>
+    <p>Perderás el progreso de esta sesión. ¡Casi terminas, no te rajes!</p>
+    <button class="btn-glow" onclick="doLeave()" style="background:linear-gradient(135deg,#ff5252,#ff6d00)">Sí, salir</button>
+    <button class="btn-flat" onclick="closeModal('modal-leave')">Seguir practicando 💪</button>
+  </div>
+</div>
+
+<!-- ════ MODAL LOCKED ════ -->
+<div class="modal" id="modal-locked">
+  <div class="modal-sheet">
+    <div class="m-handle"></div>
+    <h3>🔒 Bloqueado</h3>
+    <p>Completa la lección o nivel anterior para desbloquear esto. ¡Tú puedes!</p>
+    <button class="btn-glow" onclick="closeModal('modal-locked')">Entendido 👍</button>
+  </div>
+</div>
+
+<!-- ════ BOTTOM NAV ════ -->
+<nav class="bottom-nav" id="bottom-nav">
+  <button class="nav-btn active" id="nav-home" onclick="goScreen('s-home')"><span class="ni">🏠</span>Inicio</button>
+  <button class="nav-btn" id="nav-levels" onclick="goScreen('s-levels')"><span class="ni">📊</span>Niveles</button>
+  <button class="nav-btn" id="nav-chat" onclick="goScreen('s-chat')"><span class="ni">🤖</span>Chat</button>
+  <button class="nav-btn" id="nav-speaking" onclick="goScreen('s-speaking')"><span class="ni">🎤</span>Speaking</button>
+  <button class="nav-btn" id="nav-vocab" onclick="goScreen('s-vocab')"><span class="ni">📚</span>Vocab</button>
+</nav>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// CURRICULUM — A1(10) + A2(10) + B1(10) + B2(10) + C1(10) + C2(10) = 60 lecciones × 6 = 360 ejercicios
+// ═══════════════════════════════════════════════════════════════
+const curriculum={
+A1:{title:"Beginner",color:"#06d6a0",icon:"🌱",cls:"lv-a1",lessons:[
+ {id:"a1_1",title:"Verb To Be",icon:"🔤",
+  theory:"El verbo 'to be' es el más importante del inglés.<br><br><b>I am</b> (I'm) → yo soy/estoy<br><b>You are</b> (You're) → tú eres<br><b>He/She/It is</b> → él/ella es<br><b>We/They are</b> → nosotros/ellos son<br><br><b>Negativo:</b> I'm not | She isn't | They aren't<br><b>Pregunta:</b> Are you...? Yes, I am. / No, I'm not.",
+  examples:["I am a student.","She is my teacher.","They are friends.","We are not tired."],
+  exercises:[
+   {type:"fill",q:"I ___ a student.",answer:"am",hint:"primera persona singular"},
+   {type:"multiple",q:"She ___ my sister.",options:["am","is","are","be"],answer:"is"},
+   {type:"multiple",q:"We ___ friends.",options:["am","is","are","was"],answer:"are"},
+   {type:"truefalse",q:'"He are smart" es correcto.',answer:false},
+   {type:"order",words:["I","am","very","happy","today"],answer:"I am very happy today"},
+   {type:"fill",q:"They ___ students.",answer:"are",hint:"plural → are"},
+ ]},
+ {id:"a1_2",title:"Personal Pronouns",icon:"👤",
+  theory:"Los pronombres personales reemplazan nombres:<br><br><b>I</b>→yo | <b>You</b>→tú | <b>He</b>→él | <b>She</b>→ella<br><b>It</b>→eso/cosas/animales | <b>We</b>→nosotros | <b>They</b>→ellos",
+  examples:["I am hungry.","He is at school.","It is a big dog.","They are playing."],
+  exercises:[
+   {type:"multiple",q:"Mi hermano → ___",options:["I","He","She","They"],answer:"He"},
+   {type:"multiple",q:"Mi hermana → ___",options:["I","He","She","We"],answer:"She"},
+   {type:"fill",q:"___ am a teacher.",answer:"I",hint:"primera persona singular"},
+   {type:"truefalse",q:'"She" se usa para hablar de un hombre.',answer:false},
+   {type:"multiple",q:"Mi perro → ___",options:["He","She","It","We"],answer:"It"},
+   {type:"order",words:["She","is","my","best","friend"],answer:"She is my best friend"},
+ ]},
+ {id:"a1_3",title:"Articles: a, an, the",icon:"📝",
+  theory:"<b>a</b> → antes de consonante: a <i>book</i>, a <i>car</i><br><b>an</b> → antes de vocal (a,e,i,o,u): an <i>apple</i>, an <i>egg</i><br><b>the</b> → algo específico/único: the <i>sun</i><br><br>⚠️ El sonido importa: a <i>university</i> (suena yu) | an <i>hour</i> (suena au)",
+  examples:["I have a cat.","She eats an orange.","The moon is beautiful.","He is an engineer."],
+  exercises:[
+   {type:"multiple",q:"I have ___ apple.",options:["a","an","the","—"],answer:"an"},
+   {type:"multiple",q:"She is ___ teacher.",options:["a","an","the","—"],answer:"a"},
+   {type:"fill",q:"___ sun is very hot.",answer:"The",hint:"único en el mundo → the"},
+   {type:"truefalse",q:'"a umbrella" es correcto.',answer:false},
+   {type:"multiple",q:"I want ___ orange juice.",options:["a","an","the","—"],answer:"an"},
+   {type:"fill",q:"He is ___ engineer.",answer:"an",hint:"vocal 'e'"},
+ ]},
+ {id:"a1_4",title:"Numbers & Time",icon:"🔢",
+  theory:"<b>1-20:</b> one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty<br><br><b>Decenas:</b> 30=thirty, 40=forty, 50=fifty, 60=sixty, 70=seventy, 80=eighty, 90=ninety, 100=one hundred<br><br><b>La hora:</b> 3:00→three o'clock | 3:30→half past three | 3:15→quarter past three | 3:45→quarter to four",
+  examples:["I have two sisters.","It's half past three.","She's twenty-five years old.","The meeting is at quarter to nine."],
+  exercises:[
+   {type:"multiple",q:"13 en inglés:",options:["thirty","thirteen","three","thirty-one"],answer:"thirteen"},
+   {type:"fill",q:"100 = one ___.",answer:"hundred",hint:"centena"},
+   {type:"multiple",q:"3:30 en inglés:",options:["quarter past three","half past three","three o'clock","quarter to four"],answer:"half past three"},
+   {type:"truefalse",q:'"Twenty" es el número 12.',answer:false},
+   {type:"fill",q:"40 = ___.",answer:"forty",hint:"cuarenta"},
+   {type:"multiple",q:"3:15 → It's ___ past three.",options:["half","quarter","one","two"],answer:"quarter"},
+ ]},
+ {id:"a1_5",title:"Colors & Adjectives",icon:"🎨",
+  theory:"<b>Colores:</b> red, blue, green, yellow, white, black, orange, pink, purple, brown, grey<br><br>Los adjetivos van <b>ANTES</b> del sustantivo:<br>a <i>big</i> house ✅ | a house <i>big</i> ❌<br><br><b>Adjetivos comunes:</b> big/small, old/new, hot/cold, fast/slow, happy/sad, cheap/expensive",
+  examples:["I have a red car.","She is a happy girl.","It's a cold day.","He has a big black dog."],
+  exercises:[
+   {type:"multiple",q:"El color del sol es:",options:["blue","red","yellow","green"],answer:"yellow"},
+   {type:"fill",q:"I have a ___ dog. (negro)",answer:"black",hint:"opuesto de white"},
+   {type:"truefalse",q:'En inglés decimos "a car red".',answer:false},
+   {type:"multiple",q:"Opuesto de 'big':",options:["huge","small","short","tiny"],answer:"small"},
+   {type:"order",words:["She","has","a","beautiful","red","dress"],answer:"She has a beautiful red dress"},
+   {type:"fill",q:"Ice is ___. (frío)",answer:"cold",hint:"temperatura muy baja"},
+ ]},
+ {id:"a1_6",title:"Simple Present",icon:"⏰",
+  theory:"Para rutinas, hábitos y verdades generales.<br><br><b>He/She/It → +s/+es/+ies:</b><br>work→works | go→goes | study→studies<br><br><b>Negativo:</b> I/You/We/They <b>don't</b> | He/She/It <b>doesn't</b><br><br>⏰ Señales: always, usually, sometimes, never, every day",
+  examples:["I work every day.","She drinks coffee every morning.","He doesn't like spiders.","They don't eat meat."],
+  exercises:[
+   {type:"fill",q:"She ___ (work) every day.",answer:"works",hint:"3ra persona → +s"},
+   {type:"multiple",q:"I ___ like vegetables.",options:["doesn't","don't","not","isn't"],answer:"don't"},
+   {type:"fill",q:"He ___ (study) English.",answer:"studies",hint:"study → studies"},
+   {type:"truefalse",q:'"She play football" es correcto.',answer:false},
+   {type:"multiple",q:"They ___ speak French.",options:["don't","doesn't","aren't","isn't"],answer:"don't"},
+   {type:"order",words:["She","always","drinks","coffee","in","the","morning"],answer:"She always drinks coffee in the morning"},
+ ]},
+ {id:"a1_7",title:"WH Questions",icon:"❓",
+  theory:"<b>What</b>→¿Qué? | <b>Where</b>→¿Dónde? | <b>Who</b>→¿Quién?<br><b>When</b>→¿Cuándo? | <b>Why</b>→¿Por qué? | <b>How</b>→¿Cómo?<br><br><b>Estructura:</b> WH + do/does + subject + verb?<br><i>Where do you live? / What does she eat?</i>",
+  examples:["Where do you live?","What does he eat?","Why are you sad?","How many cats do you have?"],
+  exercises:[
+   {type:"multiple",q:"___ do you live? (lugar)",options:["What","Where","Who","When"],answer:"Where"},
+   {type:"fill",q:"___ is your name?",answer:"What",hint:"pregunta por nombre"},
+   {type:"multiple",q:"___ does she work? (lugar)",options:["What","Where","How","Who"],answer:"Where"},
+   {type:"truefalse",q:'"When you live?" es correcto.',answer:false},
+   {type:"fill",q:"___ are you late? (razón)",answer:"Why",hint:"pregunta por razón"},
+   {type:"order",words:["What","does","he","eat","for","breakfast","?"],answer:"What does he eat for breakfast ?"},
+ ]},
+ {id:"a1_8",title:"Family Vocabulary",icon:"👨‍👩‍👧‍👦",
+  theory:"<b>La familia:</b><br>mother/mom | father/dad | brother | sister | son | daughter<br>grandfather | grandmother | uncle | aunt | cousin | husband | wife | nephew | niece",
+  examples:["My mother is a nurse.","I have two brothers.","Her grandmother is 80.","His wife is a doctor."],
+  exercises:[
+   {type:"fill",q:"El hijo de mi tío es mi ___.",answer:"cousin",hint:"primo/prima"},
+   {type:"multiple",q:"'Daughter' significa:",options:["hijo","hija","hermana","tía"],answer:"hija"},
+   {type:"fill",q:"My dad's mother is my ___.",answer:"grandmother",hint:"abuela"},
+   {type:"truefalse",q:'"Brother" significa hermana.',answer:false},
+   {type:"multiple",q:"Mi papá en inglés:",options:["uncle","son","father","brother"],answer:"father"},
+   {type:"order",words:["My","sister","is","a","great","doctor"],answer:"My sister is a great doctor"},
+ ]},
+ {id:"a1_9",title:"Prepositions of Place",icon:"📍",
+  theory:"<b>in</b>→dentro de | <b>on</b>→encima de | <b>under</b>→debajo de<br><b>next to</b>→al lado de | <b>between</b>→entre<br><b>in front of</b>→enfrente de | <b>behind</b>→detrás de | <b>near</b>→cerca de",
+  examples:["The cat is on the sofa.","The keys are in my bag.","She's behind me.","The school is next to the park."],
+  exercises:[
+   {type:"multiple",q:"The book is ___ the table. (encima)",options:["in","on","under","next to"],answer:"on"},
+   {type:"fill",q:"The dog is ___ the bed. (debajo)",answer:"under",hint:"debajo de"},
+   {type:"multiple",q:"The keys are ___ my bag. (dentro)",options:["on","under","in","behind"],answer:"in"},
+   {type:"truefalse",q:'"The cat is on the box" = el gato está dentro.',answer:false},
+   {type:"fill",q:"She is ___ me. (al lado)",answer:"next to",hint:"dos palabras"},
+   {type:"order",words:["The","phone","is","on","the","table"],answer:"The phone is on the table"},
+ ]},
+ {id:"a1_10",title:"Common Phrases",icon:"💬",
+  theory:"<b>Frases esenciales:</b><br>Hello/Hi | Goodbye/Bye | How are you? | I'm fine/good<br>Nice to meet you | Please | Thank you | You're welcome<br>Sorry | Excuse me | I don't understand | Can you repeat?",
+  examples:["Hi! How are you? I'm great!","Nice to meet you, María.","Sorry, I don't understand.","Can you repeat, please?"],
+  exercises:[
+   {type:"fill",q:"___ to meet you!",answer:"Nice",hint:"Nice to meet you"},
+   {type:"multiple",q:"¿Cómo se dice 'De nada'?",options:["Thank you","Sorry","You're welcome","Please"],answer:"You're welcome"},
+   {type:"fill",q:"How ___ you?",answer:"are",hint:"How are you?"},
+   {type:"truefalse",q:'"Excuse me" significa lo siento profundamente.',answer:false},
+   {type:"multiple",q:"¿Cómo te despides?",options:["Hello","Nice","Goodbye","Sorry"],answer:"Goodbye"},
+   {type:"order",words:["Thank","you","very","much","for","your","help"],answer:"Thank you very much for your help"},
+ ]},
+]},
+A2:{title:"Elementary",color:"#4cc9f0",icon:"📘",cls:"lv-a2",lessons:[
+ {id:"a2_1",title:"Past Simple (Regular)",icon:"⏪",
+  theory:"Para acciones terminadas en el pasado.<br><br><b>Regulares → +ed:</b> work→worked | play→played | study→studied<br><b>Negativo:</b> didn't + verb base<br><b>Pregunta:</b> Did + subject + verb?<br><br>⏰ Señales: yesterday, last week, ago, in 2020",
+  examples:["I worked all day yesterday.","She studied all night.","They didn't play football.","Did you visit your family?"],
+  exercises:[
+   {type:"fill",q:"I ___ (work) yesterday.",answer:"worked",hint:"regular → +ed"},
+   {type:"multiple",q:"She ___ (study) all night.",options:["studyed","studied","studyd","studying"],answer:"studied"},
+   {type:"fill",q:"He ___ not play football. (pasado)",answer:"didn't",hint:"didn't + verb base"},
+   {type:"truefalse",q:'"I workedED yesterday" es correcto.',answer:false},
+   {type:"multiple",q:"They ___ (visit) their family last week.",options:["visit","visited","visiting","visits"],answer:"visited"},
+   {type:"order",words:["She","didn't","cook","last","night"],answer:"She didn't cook last night"},
+ ]},
+ {id:"a2_2",title:"Past Simple (Irregular)",icon:"📚",
+  theory:"<b>Verbos irregulares esenciales:</b><br>go→went | eat→ate | have→had | see→saw | come→came<br>buy→bought | take→took | make→made | give→gave<br>know→knew | think→thought | write→wrote | get→got<br>say→said | find→found | tell→told | leave→left | meet→met<br><br>⚠️ Negativo e interrogativo usan el VERBO BASE.",
+  examples:["I went to the cinema.","She ate a sandwich.","They had a great time.","He bought a new phone."],
+  exercises:[
+   {type:"fill",q:"I ___ (go) to the beach.",answer:"went",hint:"go → went"},
+   {type:"multiple",q:"She ___ (eat) pizza for dinner.",options:["eated","ate","eaten","eating"],answer:"ate"},
+   {type:"fill",q:"He ___ (have) a dog when he was young.",answer:"had",hint:"have → had"},
+   {type:"multiple",q:"They ___ (buy) a new car.",options:["buyed","bought","buyd","buy"],answer:"bought"},
+   {type:"truefalse",q:'"I goed to school yesterday" es correcto.',answer:false},
+   {type:"order",words:["We","saw","a","great","movie","last","night"],answer:"We saw a great movie last night"},
+ ]},
+ {id:"a2_3",title:"Future with 'will'",icon:"🔮",
+  theory:"<b>Will</b> para predicciones y decisiones espontáneas.<br><br><b>will + verb base</b><br>It <b>will rain</b>. | I <b>will help</b> you!<br><br><b>Contracción:</b> I'll, She'll, We'll<br><b>Negativo:</b> <b>won't</b> = will not<br><br>⚠️ NUNCA: I <del>wills</del> go | I will <del>to</del> go",
+  examples:["It will rain tomorrow.","I'll help you!","She won't be late.","We'll have dinner at 8."],
+  exercises:[
+   {type:"fill",q:"I ___ (study) tomorrow.",answer:"will study",hint:"will + verb base"},
+   {type:"fill",q:"She ___ (not come). (contracción)",answer:"won't come",hint:"won't + verb base"},
+   {type:"multiple",q:"It ___ (rain) tonight.",options:["will rains","will rain","rains","is rain"],answer:"will rain"},
+   {type:"truefalse",q:'"I wills go" es correcto.',answer:false},
+   {type:"order",words:["He","will","call","you","tomorrow","morning"],answer:"He will call you tomorrow morning"},
+   {type:"fill",q:"They ___ (not be) late.",answer:"won't be",hint:"won't = will not"},
+ ]},
+ {id:"a2_4",title:"Going to (Future Plans)",icon:"📅",
+  theory:"<b>Going to</b> para planes decididos y predicciones con evidencia.<br><br><b>am/is/are + going to + verb</b><br>I'm <b>going to</b> study medicine.<br><br>⚖️ Will → decisión espontánea | Going to → plan previo",
+  examples:["I'm going to study medicine.","They're going to travel.","It's going to rain!","She's going to have a baby."],
+  exercises:[
+   {type:"fill",q:"I ___ (visit) my parents. (plan)",answer:"am going to visit",hint:"am/is/are + going to + verb"},
+   {type:"multiple",q:"She ___ cook dinner. (plan)",options:["will","is going to","going to","are going to"],answer:"is going to"},
+   {type:"truefalse",q:'"They going to travel" es correcto.',answer:false},
+   {type:"fill",q:"He ___ (buy) a new phone.",answer:"is going to buy",hint:"He → is going to"},
+   {type:"multiple",q:"We ___ visit London next summer.",options:["is going to","are going to","am going to","will going"],answer:"are going to"},
+   {type:"order",words:["She","is","going","to","study","tomorrow"],answer:"She is going to study tomorrow"},
+ ]},
+ {id:"a2_5",title:"Comparative Adjectives",icon:"⚖️",
+  theory:"<b>Corto → +er + than:</b> tall→taller | big→bigger<br><b>Largo → more + than:</b> more beautiful<br><br><b>Irregulares:</b> good→better | bad→worse | far→farther",
+  examples:["She is taller than her sister.","This is more expensive.","Today is better than yesterday.","My bag is heavier than yours."],
+  exercises:[
+   {type:"fill",q:"She is ___ (tall) than her brother.",answer:"taller",hint:"corto → +er"},
+   {type:"multiple",q:"This is ___ than mine. (expensive)",options:["more expensive","expensiver","expensive","most expensive"],answer:"more expensive"},
+   {type:"fill",q:"Today is ___ (good) than yesterday.",answer:"better",hint:"good → better (irregular)"},
+   {type:"truefalse",q:'"She is more tall than me" es correcto.',answer:false},
+   {type:"multiple",q:"My bag is ___ (heavy) than yours.",options:["more heavy","heavier","heavyer","most heavy"],answer:"heavier"},
+   {type:"order",words:["He","is","stronger","than","his","friend"],answer:"He is stronger than his friend"},
+ ]},
+ {id:"a2_6",title:"Superlative Adjectives",icon:"🏆",
+  theory:"<b>Corto → the +est:</b> tall→the tallest<br><b>Largo → the most:</b> the most beautiful<br><br><b>Irregulares:</b> good→the best | bad→the worst<br><br><b>Estructura:</b> the [superlative] + in/of",
+  examples:["Everest is the highest mountain.","She's the best student.","This is the most expensive.","It was the worst day."],
+  exercises:[
+   {type:"fill",q:"He is ___ (tall) student in class.",answer:"the tallest",hint:"the + adj + est"},
+   {type:"multiple",q:"It's ___ (expensive) hotel.",options:["the most expensive","the expensivest","more expensive","most expensive"],answer:"the most expensive"},
+   {type:"fill",q:"She is ___ (good) player.",answer:"the best",hint:"good → the best"},
+   {type:"truefalse",q:'"The most tall" es correcto para "tall".',answer:false},
+   {type:"multiple",q:"July is ___ (hot) month here.",options:["hotter","the hottest","most hot","the most hot"],answer:"the hottest"},
+   {type:"order",words:["This","is","the","worst","movie","I","have","ever","seen"],answer:"This is the worst movie I have ever seen"},
+ ]},
+ {id:"a2_7",title:"Can / Could",icon:"💪",
+  theory:"<b>Can</b> = habilidad presente: I <b>can</b> swim.<br><b>Can't</b> = no puedo.<br><b>Could</b> = habilidad pasada / petición educada:<br>I <b>could</b> run fast when I was 10.<br><b>Could</b> you help me, please?<br><br>⚠️ Después de can/could → verbo BASE (sin to)",
+  examples:["I can speak three languages.","She can't drive yet.","Could you help me?","He could swim at age 3."],
+  exercises:[
+   {type:"fill",q:"I ___ swim very well.",answer:"can",hint:"habilidad presente"},
+   {type:"multiple",q:"She ___ fly. (imposible)",options:["can","can't","could","couldn't"],answer:"can't"},
+   {type:"fill",q:"___ you help me? (petición)",answer:"Can",hint:"pedir ayuda"},
+   {type:"truefalse",q:'"I can to swim" es correcto.',answer:false},
+   {type:"multiple",q:"When I was 5, I ___ speak English.",options:["can","could","can't","will"],answer:"could"},
+   {type:"order",words:["Can","you","speak","Spanish","?"],answer:"Can you speak Spanish ?"},
+ ]},
+ {id:"a2_8",title:"Should / Shouldn't",icon:"💡",
+  theory:"<b>Should</b> = consejo, recomendación<br><b>Shouldn't</b> = no deberías<br><br>You <b>should</b> exercise more.<br>She <b>shouldn't</b> eat junk food.<br><br>⚠️ Después de should → verbo BASE<br>You should <b>go</b> ✅ | You should <b>to go</b> ❌",
+  examples:["You should drink more water.","She shouldn't stay up late.","He should call his parents.","We should leave early."],
+  exercises:[
+   {type:"fill",q:"You ___ drink more water.",answer:"should",hint:"recomendación positiva"},
+   {type:"multiple",q:"She ___ eat too much sugar.",options:["should","shouldn't","can","will"],answer:"shouldn't"},
+   {type:"fill",q:"He ___ see a doctor.",answer:"should",hint:"consejo médico"},
+   {type:"truefalse",q:'"You should to study" es correcto.',answer:false},
+   {type:"order",words:["You","shouldn't","stay","up","very","late"],answer:"You shouldn't stay up very late"},
+   {type:"multiple",q:"I ___ eat more vegetables.",options:["should","shouldn't","can't","won't"],answer:"should"},
+ ]},
+ {id:"a2_9",title:"Present Continuous",icon:"🎬",
+  theory:"Para acciones en progreso <b>ahora mismo</b>.<br><br><b>am/is/are + verb+ing</b><br>I <b>am eating</b> right now. | She <b>is talking</b>.<br><br><b>Reglas -ing:</b> talk→talking | run→running | make→making<br><br>⏰ now, right now, at the moment",
+  examples:["I am studying English right now.","She is talking on the phone.","They aren't sleeping.","What are you doing?"],
+  exercises:[
+   {type:"fill",q:"I ___ (eat) right now.",answer:"am eating",hint:"am + verb + ing"},
+   {type:"multiple",q:"She ___ (run) in the park.",options:["is runing","is running","are running","am running"],answer:"is running"},
+   {type:"fill",q:"They ___ (not sleep) now.",answer:"aren't sleeping",hint:"aren't + verb + ing"},
+   {type:"truefalse",q:'"He is makeing dinner" es correcto.',answer:false},
+   {type:"order",words:["She","is","talking","on","the","phone","right","now"],answer:"She is talking on the phone right now"},
+   {type:"fill",q:"What ___ you ___ (do)?",answer:"are / doing",hint:"are + verb + ing"},
+ ]},
+ {id:"a2_10",title:"Adverbs of Frequency",icon:"📊",
+  theory:"<b>100%</b> always | <b>90%</b> usually | <b>70%</b> often<br><b>50%</b> sometimes | <b>20%</b> rarely | <b>0%</b> never<br><br><b>Posición:</b> ANTES del verbo principal<br>She <b>always</b> smiles.<br>DESPUÉS de 'be': He <b>is</b> always late.",
+  examples:["I always brush my teeth.","She never eats meat.","They sometimes go to the cinema.","He is usually on time."],
+  exercises:[
+   {type:"fill",q:"I ___ eat breakfast. (siempre)",answer:"always",hint:"100% = always"},
+   {type:"multiple",q:"¿Cuál tiene 0% de frecuencia?",options:["always","usually","sometimes","never"],answer:"never"},
+   {type:"order",words:["She","always","drinks","coffee","in","the","morning"],answer:"She always drinks coffee in the morning"},
+   {type:"truefalse",q:'"I eat always breakfast" es correcto.',answer:false},
+   {type:"fill",q:"He ___ watches TV. (a veces)",answer:"sometimes",hint:"50% = sometimes"},
+   {type:"multiple",q:"She is ___ late. (con 'be')",options:["always","—","never always","ever"],answer:"always"},
+ ]},
+]},
+B1:{title:"Intermediate",color:"#a78bfa",icon:"⚡",cls:"lv-b1",lessons:[
+ {id:"b1_1",title:"Present Perfect",icon:"✅",
+  theory:"Para experiencias de vida y acciones con efecto actual.<br><br><b>have/has + past participle</b><br>I <b>have visited</b> Paris. | She <b>has just finished</b>.<br><br>📌 Fecha específica → Past Simple<br>📌 ever/never/already/yet/just → Present Perfect<br><br>⏰ for, since, recently, ever, never",
+  examples:["I have been to Japan.","She has just finished.","They haven't eaten yet.","Have you ever tried sushi?"],
+  exercises:[
+   {type:"fill",q:"I ___ (visit) London.",answer:"have visited",hint:"have + past participle"},
+   {type:"multiple",q:"She ___ (finish) her homework.",options:["has finished","have finished","finished","is finishing"],answer:"has finished"},
+   {type:"fill",q:"I ___ (not eat) yet.",answer:"haven't eaten",hint:"haven't + eaten"},
+   {type:"truefalse",q:'"I have went to Paris" es correcto.',answer:false},
+   {type:"order",words:["Have","you","ever","been","to","Colombia","?"],answer:"Have you ever been to Colombia ?"},
+   {type:"fill",q:"She ___ (live) here since 2010.",answer:"has lived",hint:"has + lived"},
+ ]},
+ {id:"b1_2",title:"Present Perfect vs Past Simple",icon:"🔄",
+  theory:"<b>Past Simple</b> → tiempo específico:<br>I <b>went</b> to Paris <b>in 2019</b>.<br><br><b>Present Perfect</b> → sin tiempo / efecto actual:<br>I <b>have been</b> to Paris. (experiencia)<br><br>🔑 Fecha → Past Simple | ever/never/yet → PP",
+  examples:["I visited Rome in 2019. (fecha)","I have visited Rome. (experiencia)","Did you see that? vs Have you seen it?"],
+  exercises:[
+   {type:"multiple",q:"I ___ Paris in 2018.",options:["visited","have visited","has visited","visit"],answer:"visited"},
+   {type:"fill",q:"___ you ever ___ (eat) sushi?",answer:"Have / eaten",hint:"Have + ever + past participle"},
+   {type:"multiple",q:"She ___ her keys. (las busca ahora)",options:["lost","has lost","have lost","lose"],answer:"has lost"},
+   {type:"truefalse",q:'"I have gone to the beach yesterday" es correcto.',answer:false},
+   {type:"fill",q:"He ___ (not see) that film yet.",answer:"hasn't seen",hint:"hasn't + past participle"},
+   {type:"order",words:["She","worked","in","London","last","year"],answer:"She worked in London last year"},
+ ]},
+ {id:"b1_3",title:"First Conditional",icon:"🔀",
+  theory:"Para situaciones <b>posibles</b> en el futuro.<br><br><b>If + Present Simple, will + verb base</b><br>If it <b>rains</b>, I <b>will</b> stay home.<br><br>⚠️ La cláusula IF usa PRESENTE — ¡NO will!<br>✅ If it <b>rains</b>... | ❌ If it <del>will rain</del>...",
+  examples:["If it rains, I will take an umbrella.","If you eat well, you will be healthy.","I will help you if you need me."],
+  exercises:[
+   {type:"fill",q:"If it ___ (rain), I will stay home.",answer:"rains",hint:"If + present simple"},
+   {type:"fill",q:"If you study, you ___ (pass).",answer:"will pass",hint:"will + verb base"},
+   {type:"multiple",q:"If she ___ hard, she will succeed.",options:["works","will work","worked","work"],answer:"works"},
+   {type:"truefalse",q:'"If it will rain, I will go" es correcto.',answer:false},
+   {type:"order",words:["If","you","eat","well,","you","will","be","healthy"],answer:"If you eat well, you will be healthy"},
+   {type:"fill",q:"I will call you if I ___ (have) time.",answer:"have",hint:"presente en if"},
+ ]},
+ {id:"b1_4",title:"Passive Voice (Present)",icon:"🔁",
+  theory:"Énfasis en la ACCIÓN.<br><br><b>Activa:</b> The chef cooks the food.<br><b>Pasiva:</b> The food <b>is cooked</b> by the chef.<br><br><b>Presente:</b> am/is/are + past participle<br>English <b>is spoken</b> worldwide.",
+  examples:["English is spoken worldwide.","The windows are cleaned weekly.","This product is made in Colombia."],
+  exercises:[
+   {type:"fill",q:"English ___ (speak) worldwide.",answer:"is spoken",hint:"is + past participle"},
+   {type:"multiple",q:"Cars ___ (make) in factories.",options:["is made","are made","make","are making"],answer:"are made"},
+   {type:"fill",q:"The house ___ (clean) every week.",answer:"is cleaned",hint:"is + cleaned"},
+   {type:"truefalse",q:'"The food are cooked" es correcto.',answer:false},
+   {type:"order",words:["English","is","spoken","all","over","the","world"],answer:"English is spoken all over the world"},
+   {type:"multiple",q:"The letters ___ (send) by email.",options:["is sent","are sent","sends","sent"],answer:"are sent"},
+ ]},
+ {id:"b1_5",title:"Must / Have to",icon:"⚠️",
+  theory:"<b>Must</b> = obligación interna: You <b>must</b> stop.<br><b>Have to</b> = obligación externa (regla): I <b>have to</b> wear uniform.<br><b>Mustn't</b> = prohibición absoluta.<br><b>Don't have to</b> = no es necesario (¡pero puedes!).",
+  examples:["You must stop at a red light.","I have to work Saturdays.","You mustn't use your phone while driving.","She doesn't have to cook."],
+  exercises:[
+   {type:"fill",q:"You ___ stop at a red light.",answer:"must",hint:"obligación fuerte"},
+   {type:"multiple",q:"I ___ wear a tie. (regla de oficina)",options:["must","have to","mustn't","should"],answer:"have to"},
+   {type:"fill",q:"You ___ smoke here. (prohibición)",answer:"mustn't",hint:"prohibición → mustn't"},
+   {type:"truefalse",q:'"Don\'t have to" significa que está prohibido.',answer:false},
+   {type:"order",words:["You","must","wash","your","hands","before","eating"],answer:"You must wash your hands before eating"},
+   {type:"multiple",q:"She ___ come if she doesn't want to.",options:["must","have to","doesn't have to","mustn't"],answer:"doesn't have to"},
+ ]},
+ {id:"b1_6",title:"Past Continuous",icon:"🎞️",
+  theory:"Para una acción en progreso en el pasado.<br><br><b>was/were + verb+ing</b><br>I <b>was sleeping</b> when the phone rang.<br>She <b>was cooking</b> while he was watching TV.",
+  examples:["I was sleeping when you called.","She was cooking while he watched TV.","What were you doing at 9pm?","It was raining when we left."],
+  exercises:[
+   {type:"fill",q:"I ___ (sleep) when you called.",answer:"was sleeping",hint:"was + verb + ing"},
+   {type:"multiple",q:"They ___ (eat) when I arrived.",options:["were eating","was eating","eating","are eating"],answer:"were eating"},
+   {type:"fill",q:"She ___ (study) all morning.",answer:"was studying",hint:"was + studying"},
+   {type:"truefalse",q:'"We was working" es correcto.',answer:false},
+   {type:"order",words:["He","was","reading","when","she","arrived"],answer:"He was reading when she arrived"},
+   {type:"fill",q:"What ___ you ___ (do) at 7pm?",answer:"were / doing",hint:"were + verb + ing"},
+ ]},
+ {id:"b1_7",title:"Reported Speech",icon:"📢",
+  theory:"<b>Directo:</b> She said, 'I am tired.'<br><b>Indirecto:</b> She said she <b>was</b> tired.<br><br><b>Cambios:</b> am/is→was | are→were | will→would | can→could | have/has→had<br><br>🔑 Pronombres también cambian: I→he/she",
+  examples:["'I am happy.' → She said she was happy.","'I will come.' → He said he would come.","'I can swim.' → She said she could swim."],
+  exercises:[
+   {type:"fill",q:'"I am tired." → She said she ___ tired.',answer:"was",hint:"am → was"},
+   {type:"multiple",q:'"I will help." → He said he ___ help.',options:["will","would","could","can"],answer:"would"},
+   {type:"fill",q:'"I can swim." → She said she ___ swim.',answer:"could",hint:"can → could"},
+   {type:"truefalse",q:'En reported speech "I am" → "was".',answer:true},
+   {type:"order",words:["He","said","he","was","very","happy"],answer:"He said he was very happy"},
+   {type:"fill",q:'"I have a dog." → He said he ___ a dog.',answer:"had",hint:"have → had"},
+ ]},
+ {id:"b1_8",title:"Gerunds & Infinitives",icon:"🔤",
+  theory:"<b>Gerund (verb+ing):</b> funciona como sustantivo<br>I enjoy <b>reading</b>. | <b>Swimming</b> is healthy.<br><br><b>Infinitive (to+verb):</b><br>I want <b>to go</b>. | She decided <b>to study</b>.<br><br>🔑 Gerund: enjoy, finish, avoid, mind, keep, practice<br>🔑 Infinitive: want, decide, hope, plan, need, agree",
+  examples:["I enjoy swimming.","She wants to travel.","Eating healthy is important.","He decided to study medicine."],
+  exercises:[
+   {type:"fill",q:"I enjoy ___ (swim).",answer:"swimming",hint:"enjoy → gerund (ing)"},
+   {type:"fill",q:"She wants ___ (travel).",answer:"to travel",hint:"want → infinitive (to)"},
+   {type:"multiple",q:"___ (run) is great exercise.",options:["To run","Running","Run","Runs"],answer:"Running"},
+   {type:"truefalse",q:'"I enjoy to swim" es correcto.',answer:false},
+   {type:"fill",q:"He decided ___ (stay) home.",answer:"to stay",hint:"decide → infinitive"},
+   {type:"order",words:["She","avoids","eating","junk","food"],answer:"She avoids eating junk food"},
+ ]},
+ {id:"b1_9",title:"Relative Clauses",icon:"🔗",
+  theory:"<b>Who</b>→personas: The man <b>who</b> lives here.<br><b>Which</b>→cosas: The book <b>which</b> I'm reading.<br><b>Where</b>→lugares: The city <b>where</b> I was born.<br><b>That</b>→puede reemplazar who/which.",
+  examples:["The man who called is my boss.","The book which I bought is excellent.","This is the city where I grew up."],
+  exercises:[
+   {type:"fill",q:"The man ___ lives here is kind.",answer:"who",hint:"persona → who"},
+   {type:"multiple",q:"The book ___ I'm reading is great.",options:["who","which","where","what"],answer:"which"},
+   {type:"fill",q:"This is the city ___ I was born.",answer:"where",hint:"lugar → where"},
+   {type:"truefalse",q:'"The man which I met" es correcto para personas.',answer:false},
+   {type:"order",words:["She","is","the","girl","who","helped","me"],answer:"She is the girl who helped me"},
+   {type:"multiple",q:"The car ___ he bought is red.",options:["who","where","which","when"],answer:"which"},
+ ]},
+ {id:"b1_10",title:"Linking Words",icon:"⛓️",
+  theory:"<b>Añadir:</b> and, also, in addition, furthermore<br><b>Contrastar:</b> but, however, although, even though<br><b>Razones:</b> because, since, as, due to<br><b>Resultados:</b> so, therefore, as a result<br><b>Concluir:</b> in conclusion, to sum up",
+  examples:["I'm tired; however, I'll keep working.","She studied hard, therefore she passed.","Although it was cold, we went out."],
+  exercises:[
+   {type:"fill",q:"I'm tired, ___ I'll rest. (resultado)",answer:"so",hint:"resultado"},
+   {type:"multiple",q:"___ it was raining, we went out.",options:["Because","Although","So","And"],answer:"Although"},
+   {type:"fill",q:"She loves English. ___, she practices daily.",answer:"Furthermore",hint:"añadir énfasis"},
+   {type:"truefalse",q:'"However" se usa para añadir información similar.',answer:false},
+   {type:"order",words:["She","studied","hard,","therefore","she","passed"],answer:"She studied hard, therefore she passed"},
+   {type:"fill",q:"He failed ___ he didn't study.",answer:"because",hint:"razón → because"},
+ ]},
+]},
+B2:{title:"Upper-Intermediate",color:"#ffd60a",icon:"🌟",cls:"lv-b2",lessons:[
+ {id:"b2_1",title:"Second Conditional",icon:"🌀",
+  theory:"Para situaciones <b>hipotéticas</b> (imaginarias) ahora o en el futuro.<br><br><b>If + Past Simple, would + verb base</b><br>If I <b>had</b> wings, I <b>would</b> fly.<br><br>⚠️ Usa <b>were</b> para TODAS las personas:<br>If I <b>were</b> you, I would study more.",
+  examples:["If I had more time, I would learn Japanese.","If she were taller, she would be a model.","What would you do if you won the lottery?"],
+  exercises:[
+   {type:"fill",q:"If I ___ (have) wings, I would fly.",answer:"had",hint:"If + past simple"},
+   {type:"fill",q:"If she studied, she ___ (pass).",answer:"would pass",hint:"would + verb base"},
+   {type:"multiple",q:"If I ___ you, I would apologize.",options:["am","were","was","be"],answer:"were"},
+   {type:"truefalse",q:'"If I would have money" es la estructura correcta.',answer:false},
+   {type:"order",words:["If","I","were","rich,","I","would","travel","the","world"],answer:"If I were rich, I would travel the world"},
+   {type:"fill",q:"What ___ you do if you won?",answer:"would",hint:"would para el resultado"},
+ ]},
+ {id:"b2_2",title:"Third Conditional",icon:"⏳",
+  theory:"Para situaciones hipotéticas en el <b>PASADO</b>. Arrepentimiento.<br><br><b>If + Past Perfect, would have + past participle</b><br>If I <b>had studied</b>, I <b>would have passed</b>.<br><br>💔 Expresa: 'Si hubiera...' / 'Ojalá hubiera...'",
+  examples:["If I had studied, I would have passed.","If you had called, I would have come.","She wouldn't have been late if she had left earlier."],
+  exercises:[
+   {type:"fill",q:"If I ___ (study), I would have passed.",answer:"had studied",hint:"If + past perfect"},
+   {type:"fill",q:"If she had left early, she ___ (not miss) the bus.",answer:"wouldn't have missed",hint:"wouldn't have + PP"},
+   {type:"multiple",q:"If it ___ rained, the match would have been cancelled.",options:["has","had","would","will"],answer:"had"},
+   {type:"truefalse",q:'"If I studied, I would have passed" es 3rd Conditional.',answer:false},
+   {type:"order",words:["If","you","had","called,","I","would","have","come"],answer:"If you had called, I would have come"},
+   {type:"fill",q:"She would have won if she ___ (train) harder.",answer:"had trained",hint:"past perfect en if"},
+ ]},
+ {id:"b2_3",title:"Passive Voice (All Tenses)",icon:"🔄",
+  theory:"<b>Presente:</b> is/are + PP<br><b>Pasado:</b> was/were + PP<br><b>Futuro:</b> will be + PP<br><b>Pres. Perfect:</b> has/have been + PP<br><b>Modal:</b> modal + be + PP<br><br>PP = Past Participle",
+  examples:["The report is written weekly.","The painting was stolen.","A new school will be built.","The package has been delivered."],
+  exercises:[
+   {type:"fill",q:"The report ___ (write) every week.",answer:"is written",hint:"is + past participle"},
+   {type:"fill",q:"The car ___ (steal) last night.",answer:"was stolen",hint:"was + past participle"},
+   {type:"multiple",q:"A new bridge ___ (build) next year.",options:["is built","was built","will be built","has been built"],answer:"will be built"},
+   {type:"fill",q:"The email ___ (send) already.",answer:"has been sent",hint:"has been + PP"},
+   {type:"order",words:["The","money","was","found","by","the","police"],answer:"The money was found by the police"},
+   {type:"multiple",q:"The project should ___ (finish) by Friday.",options:["be finish","be finished","been finished","is finished"],answer:"be finished"},
+ ]},
+ {id:"b2_4",title:"Modal Perfects",icon:"💭",
+  theory:"Para hablar del pasado con modalidad:<br><br><b>Should have + PP:</b> debería haber...<br><b>Could have + PP:</b> podría haber...<br><b>Would have + PP:</b> habría...<br><b>Must have + PP:</b> debe haber (deducción)",
+  examples:["You should have called me.","She could have won.","He must have missed the bus.","I would have helped if I had known."],
+  exercises:[
+   {type:"fill",q:"You ___ have told me! (debería haber)",answer:"should",hint:"should have + PP"},
+   {type:"fill",q:"She ___ have been at home. (deducción)",answer:"must",hint:"must have (deducción)"},
+   {type:"multiple",q:"I ___ have gone, but I was busy.",options:["must","should","could","would"],answer:"could"},
+   {type:"truefalse",q:'"You should have study" es correcto.',answer:false},
+   {type:"order",words:["She","must","have","forgotten","the","meeting"],answer:"She must have forgotten the meeting"},
+   {type:"fill",q:"He ___ have won if he had tried.",answer:"would",hint:"would have"},
+ ]},
+ {id:"b2_5",title:"Inversion & Emphasis",icon:"🔃",
+  theory:"Inversión para énfasis en registro formal.<br><br>Adverbial negativo + <b>aux + subject + verb:</b><br><i><b>Never have I</b> seen such beauty.</i><br><i><b>Not only did</b> she sing, but she also danced.</i><br><i><b>Rarely do we</b> have such opportunities.</i>",
+  examples:["Never have I seen such beauty.","Not only did she sing, but she also danced.","Rarely do we get such opportunities."],
+  exercises:[
+   {type:"fill",q:"Never ___ I seen such a thing.",answer:"have",hint:"Never + have + I"},
+   {type:"multiple",q:"Rarely ___ we have such good weather.",options:["does","do","are","did"],answer:"do"},
+   {type:"fill",q:"Not only ___ she win, but she broke the record.",answer:"did",hint:"Not only + did + subject"},
+   {type:"truefalse",q:'"Never I have seen" es la inversión correcta.',answer:false},
+   {type:"order",words:["Not","only","did","he","pass,","but","he","also","got","the","best","grade"],answer:"Not only did he pass, but he also got the best grade"},
+   {type:"fill",q:"Hardly ___ we arrived when it started to rain.",answer:"had",hint:"Hardly had + subject"},
+ ]},
+ {id:"b2_6",title:"Discourse Markers",icon:"🗣️",
+  theory:"<b>Añadir:</b> In addition, Furthermore, Moreover<br><b>Contrastar:</b> However, Nevertheless<br><b>Concluir:</b> In conclusion, To sum up, All in all<br><b>Ejemplificar:</b> For example, For instance<br><b>Clarificar:</b> In other words, That is to say",
+  examples:["Furthermore, the project needs funding.","In conclusion, results were promising.","In other words, we need more time.","For instance, we could start with a pilot."],
+  exercises:[
+   {type:"fill",q:"___ all, let me introduce myself.",answer:"First of",hint:"First of all"},
+   {type:"multiple",q:"___, the plan failed. (en conclusión)",options:["Furthermore","In conclusion","However","For example"],answer:"In conclusion"},
+   {type:"fill",q:"___, it was a great success. (en otras palabras)",answer:"In other words",hint:"para clarificar"},
+   {type:"truefalse",q:'"Furthermore" se usa para contrastar ideas.',answer:false},
+   {type:"order",words:["Furthermore,","the","project","needs","more","funding"],answer:"Furthermore, the project needs more funding"},
+   {type:"multiple",q:"___, the team worked well.",options:["For example","However","All in all","In addition"],answer:"All in all"},
+ ]},
+ {id:"b2_7",title:"Collocations",icon:"🧩",
+  theory:"<b>Make vs Do:</b><br>make: a decision, an effort, a mistake, progress, money<br>do: homework, business, your best, research, damage<br><br><b>Strong adjectives (sin 'very'):</b><br>very cold→freezing | very hot→boiling<br>very tired→exhausted | very bad→terrible | very good→excellent",
+  examples:["She made a huge effort.","I'm absolutely exhausted.","The weather was freezing.","He did his best."],
+  exercises:[
+   {type:"fill",q:"I need to ___ a decision soon.",answer:"make",hint:"make a decision"},
+   {type:"multiple",q:"She ___ her homework every night.",options:["makes","does","gets","takes"],answer:"does"},
+   {type:"fill",q:"'Very cold' avanzado: ___",answer:"freezing",hint:"extremadamente frío"},
+   {type:"truefalse",q:'"Make homework" es la colocación correcta.',answer:false},
+   {type:"multiple",q:"'Very tired' en vocabulario avanzado:",options:["bored","exhausted","lonely","stressed"],answer:"exhausted"},
+   {type:"order",words:["She","made","an","outstanding","effort"],answer:"She made an outstanding effort"},
+ ]},
+ {id:"b2_8",title:"Idioms & Expressions",icon:"🌈",
+  theory:"<b>Idioms frecuentes:</b><br>Break a leg → ¡buena suerte!<br>Piece of cake → muy fácil<br>Under the weather → sentirse mal<br>Cost an arm and a leg → costar muy caro<br>Spill the beans → revelar un secreto<br>Hit the sack → irse a dormir<br>Beat around the bush → rodear el tema",
+  examples:["Break a leg! (buena suerte)","That exam was a piece of cake.","I'm feeling under the weather.","Don't beat around the bush."],
+  exercises:[
+   {type:"fill",q:"Good luck! Break a ___!",answer:"leg",hint:"Break a leg!"},
+   {type:"multiple",q:"'Under the weather' significa:",options:["al aire libre","sentirse enfermo","tener calor","estar afuera"],answer:"sentirse enfermo"},
+   {type:"fill",q:"That exam was a piece of ___.",answer:"cake",hint:"muy fácil"},
+   {type:"truefalse",q:'"Break a leg" significa literalmente romper una pierna.',answer:false},
+   {type:"multiple",q:"'Spill the beans' significa:",options:["cocinar","revelar un secreto","tirar comida","estar confundido"],answer:"revelar un secreto"},
+   {type:"order",words:["That","car","cost","an","arm","and","a","leg"],answer:"That car cost an arm and a leg"},
+ ]},
+ {id:"b2_9",title:"Academic Writing Basics",icon:"✍️",
+  theory:"<b>Hedging básico:</b><br>It seems that... | It appears that...<br>There is evidence to suggest...<br><br><b>Nominalización:</b><br>decide→decision | develop→development<br>achieve→achievement | invest→investment<br>improve→improvement | discover→discovery",
+  examples:["It appears that climate change is accelerating.","The development of new technologies is remarkable.","There is evidence to suggest a correlation."],
+  exercises:[
+   {type:"fill",q:"It ___ that the experiment was successful.",answer:"appears",hint:"It appears that..."},
+   {type:"multiple",q:"Forma nominal de 'develop':",options:["developed","developing","development","developer"],answer:"development"},
+   {type:"fill",q:"There is evidence to ___ that exercise is beneficial.",answer:"suggest",hint:"to suggest"},
+   {type:"truefalse",q:'"Achievement" es la forma nominal de "achieve".',answer:true},
+   {type:"fill",q:"Forma nominal de 'invest': ___",answer:"investment",hint:"invest + ment"},
+   {type:"order",words:["It","seems","that","more","research","is","needed"],answer:"It seems that more research is needed"},
+ ]},
+ {id:"b2_10",title:"Mixed Conditionals",icon:"🔀",
+  theory:"Mezclan tiempo pasado y presente.<br><br><b>Causa pasada → Resultado presente:</b><br>If + Past Perfect, would + verb base<br><i>If I <b>had studied</b> medicine, I <b>would be</b> a doctor now.</i><br><br><b>Situación hipotética → Resultado pasado:</b><br>If + Past Simple, would have + PP",
+  examples:["If I had taken that job, I would be in Paris now.","If she were more talented, she would have won.","If he hadn't moved, he wouldn't have met his wife."],
+  exercises:[
+   {type:"fill",q:"If I ___ (study) medicine, I would be a doctor now.",answer:"had studied",hint:"past perfect en if"},
+   {type:"fill",q:"If she were organized, she ___ (finish) by now.",answer:"would have finished",hint:"would have + PP"},
+   {type:"multiple",q:"If I ___ taken the job, I would be in London now.",options:["have","had","has","was"],answer:"had"},
+   {type:"truefalse",q:'En mixed conditionals tipo 1, el resultado usa "would + verb base".',answer:true},
+   {type:"order",words:["If","she","had","practiced","more,","she","would","be","a","champion","now"],answer:"If she had practiced more, she would be a champion now"},
+   {type:"fill",q:"If he ___ (be) more careful, he wouldn't have had the accident.",answer:"were",hint:"If + were"},
+ ]},
+]},
+C1:{title:"Advanced",color:"#f72585",icon:"🔥",cls:"lv-c1",lessons:[
+ {id:"c1_1",title:"Wish & If Only",icon:"🌠",
+  theory:"Para expresar deseos y arrepentimientos.<br><br><b>Deseo presente (diferente a realidad):</b><br>I wish I <b>were</b> taller. | If only I <b>had</b> more money.<br><br><b>Arrepentimiento pasado:</b><br>I wish I <b>had studied</b> more. | If only she <b>hadn't left</b>.<br><br><b>Queja sobre hábito ajeno:</b><br>I wish you <b>wouldn't</b> leave your mess everywhere!",
+  examples:["I wish I could fly.","If only I had more money.","I wish I had studied medicine.","I wish you wouldn't do that!"],
+  exercises:[
+   {type:"fill",q:"I wish I ___ (be) taller. (deseo presente)",answer:"were",hint:"wish + past subjunctive: were"},
+   {type:"fill",q:"I wish I ___ (study) harder. (arrepentimiento)",answer:"had studied",hint:"wish + past perfect"},
+   {type:"multiple",q:"If only she ___ here right now.",options:["is","were","was","be"],answer:"were"},
+   {type:"truefalse",q:'"I wish I would be taller" es correcto para deseo presente.',answer:false},
+   {type:"order",words:["If","only","I","hadn't","eaten","so","much"],answer:"If only I hadn't eaten so much"},
+   {type:"fill",q:"I wish you ___ (not/leave) your things everywhere!",answer:"wouldn't leave",hint:"queja: wish + wouldn't"},
+ ]},
+ {id:"c1_2",title:"Future Perfect & Continuous",icon:"🔭",
+  theory:"<b>Future Perfect:</b> acción completada antes de un momento futuro.<br><b>will have + past participle</b><br>By Friday, I <b>will have finished</b> the report.<br><br><b>Future Continuous:</b> acción en progreso en un momento futuro.<br><b>will be + verb+ing</b><br>At 8pm I <b>will be studying</b>.<br><br>⏰ FP: by then, by next week | FC: at this time tomorrow",
+  examples:["By next year, she will have graduated.","At this time tomorrow, I'll be flying to London.","This time next week, we'll be lying on a beach."],
+  exercises:[
+   {type:"fill",q:"By Friday, I ___ (finish) the project.",answer:"will have finished",hint:"will have + past participle"},
+   {type:"fill",q:"At 8pm, she ___ (study).",answer:"will be studying",hint:"will be + verb+ing"},
+   {type:"multiple",q:"By the time you arrive, we ___ (eat).",options:["will eat","will be eating","will have eaten","are eating"],answer:"will have eaten"},
+   {type:"truefalse",q:'"I will have been finishing" es Future Perfect simple.',answer:false},
+   {type:"order",words:["By","next","year,","she","will","have","saved","enough","money"],answer:"By next year, she will have saved enough money"},
+   {type:"fill",q:"This time tomorrow, I ___ (fly) to Paris.",answer:"will be flying",hint:"will be + verb + ing"},
+ ]},
+ {id:"c1_3",title:"Advanced Passive",icon:"🔁",
+  theory:"<b>Modal + be + PP:</b><br>It <b>should be done</b> immediately.<br>It <b>could have been avoided</b>.<br><br><b>Pasiva con infinitivo:</b><br>He is believed <b>to be</b> innocent.<br>She is thought <b>to have left</b>.<br><br><b>Pasiva impersonal:</b><br>It is said that... | It has been reported that...",
+  examples:["The report should be submitted by Monday.","It is believed that he is innocent.","The error could have been avoided.","It has been reported that prices will rise."],
+  exercises:[
+   {type:"fill",q:"The report ___ (submit) by Monday.",answer:"should be submitted",hint:"should be + past participle"},
+   {type:"multiple",q:"He ___ (believe) to be innocent.",options:["is believe","is believed","believes","was believing"],answer:"is believed"},
+   {type:"fill",q:"It ___ (say) that she is very talented.",answer:"is said",hint:"It is said that..."},
+   {type:"truefalse",q:'"It has been said that" es una estructura pasiva válida.',answer:true},
+   {type:"order",words:["The","error","could","have","been","avoided"],answer:"The error could have been avoided"},
+   {type:"fill",q:"She ___ (think) to have left the country.",answer:"is thought",hint:"is thought to have..."},
+ ]},
+ {id:"c1_4",title:"Complex Relative Clauses",icon:"🔗",
+  theory:"<b>Non-defining</b> (entre comas — info extra):<br><i>My sister, <b>who lives in Cali</b>, is a doctor.</i><br><br><b>Con preposición (formal):</b><br><i>The company <b>for which</b> she works is well known.</i><br><br><b>Whose</b> (posesión):<br><i>The student <b>whose</b> work I marked was brilliant.</i>",
+  examples:["My brother, who is a teacher, lives in Bogotá.","The house in which we stayed was beautiful.","The student whose essay won the prize was thrilled."],
+  exercises:[
+   {type:"fill",q:"My sister, ___ lives in Cali, is a doctor.",answer:"who",hint:"persona → who (non-defining)"},
+   {type:"fill",q:"The student ___ work I marked was brilliant.",answer:"whose",hint:"posesión → whose"},
+   {type:"multiple",q:"Paris, ___ I visited last year, is stunning.",options:["that","which","who","what"],answer:"which"},
+   {type:"truefalse",q:'Las cláusulas non-defining se pueden omitir sin cambiar el significado central.',answer:true},
+   {type:"order",words:["The","company","for","which","she","works","is","well","known"],answer:"The company for which she works is well known"},
+   {type:"fill",q:"The book, ___ I read in one day, was fascinating.",answer:"which",hint:"cosa + non-defining → which"},
+ ]},
+ {id:"c1_5",title:"Advanced Concession",icon:"🤝",
+  theory:"Estructuras de concesión avanzadas:<br><br><b>Although / Even though / Though</b><br><b>Despite / In spite of + noun/gerund:</b><br><i><b>Despite being</b> tired, she continued.</i><br><br><b>However + adj + may be:</b><br><i><b>However difficult</b> it may be, we must try.</i><br><br><b>Much as:</b><br><i><b>Much as</b> I like her, I disagree.</i>",
+  examples:["Despite the rain, the event was a success.","However tired she may be, she always smiles.","Much as I admire him, I can't agree.","In spite of failing, she didn't give up."],
+  exercises:[
+   {type:"fill",q:"___ the rain, the event was a success.",answer:"Despite",hint:"Despite + noun (sin that)"},
+   {type:"multiple",q:"___ tired she may be, she keeps smiling.",options:["However","Although","Despite","Even"],answer:"However"},
+   {type:"fill",q:"___ as I like her, I disagree.",answer:"Much",hint:"Much as = aunque me gusta mucho"},
+   {type:"truefalse",q:'"Despite that she was tired" es correcto.',answer:false},
+   {type:"order",words:["In","spite","of","failing,","she","didn't","give","up"],answer:"In spite of failing, she didn't give up"},
+   {type:"fill",q:"___ though it was cold, they went outside.",answer:"Even",hint:"Even though = aunque"},
+ ]},
+ {id:"c1_6",title:"Causative (Advanced)",icon:"🔧",
+  theory:"<b>Have something done</b> (servicio contratado):<br>I had my hair <b>cut</b>.<br><br><b>Get something done</b> (informal):<br>I need to get my car <b>fixed</b>.<br><br><b>Have/Get someone do:</b><br>I'll have him <b>call</b> you. | She got him <b>to fix</b> it.<br><br><b>Make / Let / Help:</b><br>She made him <b>apologise</b>. | Let her <b>speak</b>.",
+  examples:["I had my teeth checked last week.","She got her assistant to draft the report.","They're having the office renovated.","Let the children play outside."],
+  exercises:[
+   {type:"fill",q:"I need to have my car ___. (reparar)",answer:"repaired",hint:"have + object + past participle"},
+   {type:"multiple",q:"She got her secretary ___ the letter.",options:["typed","type","to type","typing"],answer:"to type"},
+   {type:"fill",q:"He had the mechanic ___ the engine.",answer:"check",hint:"have + someone + verb base"},
+   {type:"truefalse",q:'"I made him to apologise" es correcto.',answer:false},
+   {type:"order",words:["She","is","having","her","flat","completely","renovated"],answer:"She is having her flat completely renovated"},
+   {type:"fill",q:"They let the children ___ (play) in the garden.",answer:"play",hint:"let + object + verb base"},
+ ]},
+ {id:"c1_7",title:"Advanced Phrasal Verbs",icon:"💥",
+  theory:"<b>Phrasal verbs esenciales de C1:</b><br>bring about → causar | put forward → proponer<br>look into → investigar | rule out → descartar<br>fall through → fracasar (plan) | play down → minimizar<br>build up → acumular | set out → explicar/partir<br>give way to → ceder ante | see through → llevar a cabo",
+  examples:["The reforms brought about major changes.","She put forward an interesting proposal.","The police are looking into the matter.","The deal fell through at the last minute."],
+  exercises:[
+   {type:"fill",q:"The reforms ___ major changes. (causar)",answer:"brought about",hint:"bring about = provocar"},
+   {type:"multiple",q:"She ___ an interesting proposal. (proponer)",options:["put off","put forward","put down","put up"],answer:"put forward"},
+   {type:"fill",q:"The police are ___ the matter. (investigar)",answer:"looking into",hint:"look into = investigar"},
+   {type:"truefalse",q:'"Fall through" significa literalmente caer en el contexto de planes.',answer:false},
+   {type:"order",words:["The","deal","fell","through","at","the","last","minute"],answer:"The deal fell through at the last minute"},
+   {type:"fill",q:"Nothing should ___ as a possibility yet. (descartar)",answer:"be ruled out",hint:"rule out → pasiva"},
+ ]},
+ {id:"c1_8",title:"Prepositional Phrases",icon:"📐",
+  theory:"Frases preposicionales de uso avanzado en inglés formal:<br><br><b>En cuanto a:</b> with regard to | in terms of<br><b>A pesar de:</b> in spite of | regardless of<br><b>En lugar de:</b> instead of | in place of<br><b>Con el fin de:</b> with a view to | for the purpose of<br><b>En nombre de:</b> on behalf of<br><b>De acuerdo con:</b> in accordance with",
+  examples:["With regard to your application, we are pleased to inform you...","On behalf of the company, I would like to apologise.","In terms of quality, this product is excellent.","In accordance with the law, all taxes must be paid."],
+  exercises:[
+   {type:"fill",q:"___ regard to your request, we will respond shortly.",answer:"With",hint:"With regard to..."},
+   {type:"multiple",q:"She spoke ___ behalf of the entire team.",options:["in","on","at","for"],answer:"on"},
+   {type:"fill",q:"___ terms of quality, this is excellent.",answer:"In",hint:"In terms of..."},
+   {type:"truefalse",q:'"With regards to" (con s) es la forma más formal correcta.',answer:false},
+   {type:"order",words:["In","accordance","with","the","rules,","phones","must","be","off"],answer:"In accordance with the rules, phones must be off"},
+   {type:"fill",q:"___ spite of the difficulties, she succeeded.",answer:"In",hint:"In spite of..."},
+ ]},
+ {id:"c1_9",title:"Subjunctive Mood",icon:"🧠",
+  theory:"El subjuntivo expresa deseo, mandato o necesidad formal.<br><br><b>Present Subjunctive → verbo BASE (todas las personas):</b><br>I suggest that he <b>be</b> informed.<br>It is vital that she <b>attend</b>.<br><br>⚠️ NO +s para he/she: she <del>attends</del> → she <b>attend</b><br><br><b>Activado por:</b> suggest, recommend, insist, demand, require, it is essential/vital/important/necessary that...",
+  examples:["I insist that he be present.","It is essential that every student submit the form.","She wishes she were able to come.","The doctor recommended that he take the medication."],
+  exercises:[
+   {type:"fill",q:"I suggest that she ___ (be) more careful.",answer:"be",hint:"subjuntivo: verbo base"},
+   {type:"multiple",q:"It is essential that every delegate ___ the conference.",options:["attends","attend","to attend","attended"],answer:"attend"},
+   {type:"fill",q:"I wish she ___ (be) here right now.",answer:"were",hint:"wish + past subjunctive: were"},
+   {type:"truefalse",q:'"I insist that he attends" usa el subjuntivo correctamente.',answer:false},
+   {type:"order",words:["The","committee","recommended","that","the","policy","be","revised"],answer:"The committee recommended that the policy be revised"},
+   {type:"fill",q:"The law requires that each applicant ___ (submit) a form.",answer:"submit",hint:"require that + verbo base"},
+ ]},
+ {id:"c1_10",title:"Advanced Discourse Markers",icon:"🎯",
+  theory:"<b>Para conceder:</b> Granted | Admittedly | That said | Even so<br><b>Para reformular:</b> Put differently | To put it another way<br><b>Para inferir:</b> Hence | Thus | It follows that | By extension<br><b>Para limitar:</b> With the exception of | To the extent that<br><b>Para énfasis:</b> Above all | Indeed | What is more",
+  examples:["Granted, the results are promising; even so, more testing is needed.","Hence, we can conclude that the hypothesis was correct.","Above all, safety must be maintained.","Indeed, this is a significant breakthrough."],
+  exercises:[
+   {type:"fill",q:"The plan has merit. ___ said, risks remain.",answer:"That",hint:"That said = sin embargo"},
+   {type:"multiple",q:"The data was inconclusive. ___, we cannot conclude.",options:["Furthermore","Hence","Although","Despite"],answer:"Hence"},
+   {type:"fill",q:"___, the results are impressive despite the limitations.",answer:"Admittedly",hint:"para conceder un punto"},
+   {type:"truefalse",q:'"Hence" se usa para introducir una consecuencia.',answer:true},
+   {type:"order",words:["Granted,","the","evidence","is","limited;","even","so,","the","findings","matter"],answer:"Granted, the evidence is limited; even so, the findings matter"},
+   {type:"fill",q:"___ all, the safety of participants must be guaranteed.",answer:"Above",hint:"Above all = lo más importante"},
+ ]},
+]},
+C2:{title:"Mastery",color:"#f43f5e",icon:"💎",cls:"lv-c2",lessons:[
+ {id:"c2_1",title:"Cleft Sentences",icon:"✂️",
+  theory:"Resaltan una parte específica del mensaje.<br><br><b>It-cleft:</b><br><i><b>It was John</b> who called you.</i><br><i><b>It was in Paris</b> that they met.</i><br><br><b>What-cleft:</b><br><i><b>What I need</b> is a holiday.</i><br><br><b>All-cleft:</b><br><i><b>All she wanted</b> was an apology.</i>",
+  examples:["It was hard work that led to her success.","What the company needs is better leadership.","All she wanted was an apology.","It was in London that they first met."],
+  exercises:[
+   {type:"fill",q:"___ was the noise that woke me up.",answer:"It",hint:"It-cleft: It was..."},
+   {type:"multiple",q:"___ I need is a long holiday.",options:["That","It","What","Which"],answer:"What"},
+   {type:"fill",q:"It was in London ___ they met.",answer:"that",hint:"It-cleft: lugar + that"},
+   {type:"truefalse",q:'"What I want is a coffee" es una estructura cleft válida.',answer:true},
+   {type:"order",words:["It","was","hard","work","that","led","to","her","success"],answer:"It was hard work that led to her success"},
+   {type:"fill",q:"___ she wanted was an honest explanation.",answer:"All",hint:"All-cleft"},
+ ]},
+ {id:"c2_2",title:"Advanced Inversion (C2)",icon:"🔃",
+  theory:"<b>Negative adverbials → inversión obligatoria:</b><br>Never, Rarely, Seldom, Not only, No sooner, Hardly, Scarcely, Little, On no account<br><br>Adverbial + <b>aux + subject + verb</b><br><br><i><b>No sooner had</b> he sat down <b>than</b> the phone rang.</i><br><i><b>Little did</b> they know what awaited them.</i>",
+  examples:["Seldom does one encounter such dedication.","No sooner had she left than it rained.","Not until the verdict was announced did the crowd react.","Little did he realise the consequences."],
+  exercises:[
+   {type:"fill",q:"Seldom ___ one encounter such talent.",answer:"does",hint:"Seldom + aux + subject"},
+   {type:"multiple",q:"No sooner ___ she arrived than it rained.",options:["did","had","was","has"],answer:"had"},
+   {type:"fill",q:"Little ___ they know what was coming.",answer:"did",hint:"Little + did + subject"},
+   {type:"truefalse",q:'"Rarely I have seen" es la inversión correcta.',answer:false},
+   {type:"order",words:["Not","until","dawn","did","the","storm","finally","subside"],answer:"Not until dawn did the storm finally subside"},
+   {type:"fill",q:"On no account ___ you reveal this.",answer:"should",hint:"On no account + should"},
+ ]},
+ {id:"c2_3",title:"Ellipsis & Substitution",icon:"⋯",
+  theory:"<b>Ellipsis:</b> omitir palabras predecibles.<br>A: Can you drive? B: Yes, I can [drive].<br><br><b>So / Not:</b><br>A: Will it rain? B: I <b>think so</b>. / I <b>hope not</b>.<br><br><b>Do so:</b><br>Please sign if you wish <b>to do so</b>.<br><br><b>One/Ones:</b><br>I need a pen. Can I borrow <b>one</b>?",
+  examples:["She can sing, and so can her sister.","A: Is he coming? B: I believe so.","I need a new laptop but can't afford one.","He promised to help, and he did so immediately."],
+  exercises:[
+   {type:"fill",q:"A: Will she pass? B: I think ___.",answer:"so",hint:"I think so"},
+   {type:"fill",q:"A: Is it going to rain? B: I hope ___.",answer:"not",hint:"I hope not"},
+   {type:"multiple",q:"She can play piano, and so ___ her brother.",options:["does","can","is","has"],answer:"can"},
+   {type:"truefalse",q:'"I think so" puede reemplazar una cláusula entera.',answer:true},
+   {type:"order",words:["He","promised","to","help,","and","he","did","so","immediately"],answer:"He promised to help, and he did so immediately"},
+   {type:"fill",q:"I need new shoes. These ___ are too old.",answer:"ones",hint:"plural de 'one'"},
+ ]},
+ {id:"c2_4",title:"Nominalisation (C2)",icon:"📐",
+  theory:"Verbos y adjetivos → sustantivos en inglés académico.<br><br>-tion/-sion: decide→<b>decision</b> | discuss→<b>discussion</b><br>-ment: achieve→<b>achievement</b> | improve→<b>improvement</b><br>-ance/-ence: perform→<b>performance</b> | exist→<b>existence</b><br>-ity: complex→<b>complexity</b><br>-ness: aware→<b>awareness</b><br><br><i>'We decided to raise prices.' →<br>'The decision to raise prices was controversial.'</i>",
+  examples:["The implementation of the policy caused controversy.","Her dedication was remarkable.","The complexity demands careful consideration.","There has been significant development in renewable energy."],
+  exercises:[
+   {type:"fill",q:"'decide' como sustantivo: ___",answer:"decision",hint:"decide → -ision"},
+   {type:"fill",q:"'achieve' como sustantivo: ___",answer:"achievement",hint:"achieve + -ment"},
+   {type:"multiple",q:"Forma nominal de 'complex' (adjetivo):",options:["complexion","complexity","complexness","complication"],answer:"complexity"},
+   {type:"truefalse",q:'"The improving of conditions" es la nominalización más formal.',answer:false},
+   {type:"fill",q:"'exist' como sustantivo: ___",answer:"existence",hint:"exist + -ence"},
+   {type:"order",words:["The","implementation","of","the","plan","proved","highly","effective"],answer:"The implementation of the plan proved highly effective"},
+ ]},
+ {id:"c2_5",title:"Hedging & Tentativeness",icon:"🌫️",
+  theory:"El hedging hace el lenguaje más cauteloso y académico.<br><br><b>Modal hedges:</b> may, might, could, would<br><b>Lexical hedges:</b> seem, appear, tend to<br><b>Adverbial:</b> possibly, probably, generally<br><br><i>This <b>may indicate</b> a shift.</i><br><i>It <b>would appear</b> that results are inconclusive.</i><br><i>The data <b>tends to suggest</b> a correlation.</i>",
+  examples:["This may indicate a shift in public opinion.","It would appear that results are inconclusive.","The data tends to suggest a correlation.","It is worth noting that exceptions exist."],
+  exercises:[
+   {type:"fill",q:"This ___ indicate a significant change.",answer:"may",hint:"may = posibilidad"},
+   {type:"multiple",q:"It ___ appear that further research is needed.",options:["could","would","should","must"],answer:"would"},
+   {type:"fill",q:"The results ___ to suggest a correlation.",answer:"tend",hint:"tend to + verb"},
+   {type:"truefalse",q:'"It is suggested that" es apropiado en escritura académica.',answer:true},
+   {type:"order",words:["It","would","appear","that","the","situation","is","more","complex"],answer:"It would appear that the situation is more complex"},
+   {type:"fill",q:"There is evidence to ___ that stress affects performance.",answer:"suggest",hint:"evidence to suggest"},
+ ]},
+ {id:"c2_6",title:"Register & Style Shifting",icon:"🎭",
+  theory:"En C2 cambias de registro con fluidez.<br><br><b>Informal → Formal:</b><br>get→obtain | buy→purchase | start→commence<br>ask→enquire | try→endeavour | show→demonstrate<br>need→require | find out→ascertain<br><br><b>Coloquial → Académico:</b><br>'a lot of' → 'a significant number of'<br>'very important' → 'of paramount importance'",
+  examples:["Formal: The committee endeavoured to ascertain the cause.","Informal: The team tried to find out what went wrong.","Academic: The findings demonstrate a significant correlation.","Casual: The results show a strong link."],
+  exercises:[
+   {type:"fill",q:"Formal de 'buy': ___",answer:"purchase",hint:"comprar formalmente"},
+   {type:"multiple",q:"Formal de 'start' en contexto oficial:",options:["begin","commence","kick off","get going"],answer:"commence"},
+   {type:"fill",q:"Formal de 'ask for information': ___",answer:"enquire",hint:"enquire/inquire"},
+   {type:"truefalse",q:'En escritura académica formal, "don\'t" es más apropiado que "do not".',answer:false},
+   {type:"order",words:["The","results","demonstrate","a","significant","improvement","in","performance"],answer:"The results demonstrate a significant improvement in performance"},
+   {type:"fill",q:"Formal de 'try hard': ___",answer:"endeavour",hint:"endeavour to do something"},
+ ]},
+ {id:"c2_7",title:"Syntactic Complexity",icon:"🏗️",
+  theory:"Estructuras que marcan el nivel C2 nativo.<br><br><b>Participial phrases:</b><br><i><b>Having considered</b> all options, she decided.</i><br><i><b>Exhausted by the journey</b>, he fell asleep.</i><br><br><b>Absolute constructions:</b><br><i><b>All things considered</b>, it was a success.</i><br><i><b>Weather permitting</b>, we'll hold it outside.</i>",
+  examples:["Having reviewed the evidence, the judge reached a verdict.","All things considered, the project was a success.","Weather permitting, the ceremony will be outdoors.","Rarely, if ever, has such talent been seen."],
+  exercises:[
+   {type:"fill",q:"___ all options, she chose the safest route.",answer:"Having considered",hint:"Having + past participle"},
+   {type:"multiple",q:"___ permitting, the match will proceed.",options:["Weather","If weather","Climate","When weather"],answer:"Weather"},
+   {type:"fill",q:"All things ___, the outcome was satisfactory.",answer:"considered",hint:"All things considered"},
+   {type:"truefalse",q:'"Having finished the report, he submitted it" es correcto.',answer:true},
+   {type:"order",words:["Rarely,","if","ever,","has","such","courage","been","displayed"],answer:"Rarely, if ever, has such courage been displayed"},
+   {type:"fill",q:"___ by the news, she sat down in silence.",answer:"Shocked",hint:"Participio pasado al inicio"},
+ ]},
+ {id:"c2_8",title:"Advanced Idioms (C2)",icon:"🎪",
+  theory:"<b>Idioms de nivel nativo:</b><br>Take with a pinch of salt → tomar con reservas<br>The tip of the iceberg → la punta del iceberg<br>A blessing in disguise → un mal que viene bien<br>On the fence → indeciso<br>Burn the midnight oil → trabajar hasta tarde<br>Go back to square one → empezar de cero<br>The ball is in your court → te toca a ti decidir<br>Bite off more than you can chew → abarcar demasiado",
+  examples:["Take those statistics with a pinch of salt.","This is just the tip of the iceberg.","Losing that job was a blessing in disguise.","The ball is in their court now."],
+  exercises:[
+   {type:"fill",q:"Take that news with a ___ of salt.",answer:"pinch",hint:"a pinch of salt = con reservas"},
+   {type:"multiple",q:"'A blessing in disguise' significa:",options:["una bendición obvia","un mal que viene bien","una maldición","algo incomprensible"],answer:"un mal que viene bien"},
+   {type:"fill",q:"The ___ is in your court now.",answer:"ball",hint:"The ball is in your court"},
+   {type:"truefalse",q:'"Burn the midnight oil" significa estar muy cansado.',answer:false},
+   {type:"order",words:["This","problem","is","just","the","tip","of","the","iceberg"],answer:"This problem is just the tip of the iceberg"},
+   {type:"multiple",q:"'On the fence' significa:",options:["afuera","indeciso","enojado","confundido"],answer:"indeciso"},
+ ]},
+ {id:"c2_9",title:"Critical Analysis Language",icon:"🔬",
+  theory:"Lenguaje para análisis crítico académico en C2:<br><br><b>Evaluar:</b> assess, evaluate, scrutinise, examine<br><b>Cuestionar:</b> challenge, refute, contradict, cast doubt on<br><b>Argumentar:</b> contend, assert, posit, put forward the view that<br><b>Concluir:</b> infer, deduce, draw the conclusion that<br><b>Comparar:</b> contrast with, draw parallels between, juxtapose",
+  examples:["One might contend that the evidence is insufficient.","The author attempts to refute the established theory.","Drawing parallels between the two cases reveals a pattern.","It can be inferred that the policy had unintended consequences."],
+  exercises:[
+   {type:"fill",q:"One might ___ that the evidence is insufficient.",answer:"contend",hint:"contend = argumentar"},
+   {type:"multiple",q:"Sinónimo de 'question critically':",options:["ask","wonder","scrutinise","think about"],answer:"scrutinise"},
+   {type:"fill",q:"It can be ___ that the policy failed.",answer:"inferred",hint:"infer → inferred (pasiva)"},
+   {type:"truefalse",q:'"Assert" significa admitir que algo es falso.',answer:false},
+   {type:"order",words:["Drawing","parallels","between","the","two","cases","reveals","a","pattern"],answer:"Drawing parallels between the two cases reveals a pattern"},
+   {type:"fill",q:"The study attempts to ___ the existing theory.",answer:"refute",hint:"refute = rebatir"},
+ ]},
+ {id:"c2_10",title:"Native-Level Nuance",icon:"✨",
+  theory:"Distinciones que marcan el nivel C2 nativo:<br><br><b>Continual vs Continuous:</b><br>continual = repetido con intervalos | continuous = sin interrupción<br><br><b>Imply vs Infer:</b><br>El hablante <b>implies</b> | El oyente <b>infers</b><br><br><b>Disinterested vs Uninterested:</b><br>disinterested = imparcial | uninterested = no interesado<br><br><b>Comprise vs Compose:</b><br>The whole <b>comprises</b> the parts | The parts <b>compose</b> the whole",
+  examples:["The judge was disinterested (impartial), not uninterested.","She implied she was unhappy; I inferred it from her tone.","The continual interruptions made it hard to work.","The team comprises twelve members."],
+  exercises:[
+   {type:"multiple",q:"El hablante ___ algo; el oyente lo infiere.",options:["infers","implies","implicates","insinuates"],answer:"implies"},
+   {type:"fill",q:"A fair judge must be ___, not biased.",answer:"disinterested",hint:"imparcial = disinterested"},
+   {type:"multiple",q:"Interrupciones repetidas con pausas = ___",options:["continuous","continual","perpetual","constant"],answer:"continual"},
+   {type:"truefalse",q:'"Disinterested" y "uninterested" son sinónimos perfectos.',answer:false},
+   {type:"fill",q:"The speaker ___ that she was unhappy by her tone.",answer:"implied",hint:"speaker → implies/implied"},
+   {type:"order",words:["The","committee","comprises","five","elected","members"],answer:"The committee comprises five elected members"},
+ ]},
+]}
+};
+
+// ═══════════════════════════════════════════════════════════════
+// VOCABULARY (120 flashcards - 20 por nivel)
+// ═══════════════════════════════════════════════════════════════
+const vocab={
+A1:[{word:"Hello",type:"phrase",trans:"Hola",pron:"/həˈloʊ/",ex:"Hello! My name is Ana."},{word:"Beautiful",type:"adj",trans:"Hermoso/a",pron:"/ˈbjuːtɪfəl/",ex:"She is very beautiful."},{word:"Happy",type:"adj",trans:"Feliz",pron:"/ˈhæpi/",ex:"I am so happy today!"},{word:"Hungry",type:"adj",trans:"Hambriento/a",pron:"/ˈhʌŋɡri/",ex:"I am hungry. Let's eat."},{word:"Water",type:"noun",trans:"Agua",pron:"/ˈwɔːtər/",ex:"Can I have some water?"},{word:"House",type:"noun",trans:"Casa",pron:"/haʊs/",ex:"My house is very big."},{word:"School",type:"noun",trans:"Escuela",pron:"/skuːl/",ex:"She goes to school every day."},{word:"Monday",type:"noun",trans:"Lunes",pron:"/ˈmʌndeɪ/",ex:"Monday is the first day."},{word:"Breakfast",type:"noun",trans:"Desayuno",pron:"/ˈbrekfəst/",ex:"I eat breakfast at 7am."},{word:"Friend",type:"noun",trans:"Amigo/a",pron:"/frend/",ex:"She is my best friend."},{word:"Big",type:"adj",trans:"Grande",pron:"/bɪɡ/",ex:"That is a very big dog!"},{word:"Small",type:"adj",trans:"Pequeño/a",pron:"/smɔːl/",ex:"My room is very small."},{word:"Run",type:"verb",trans:"Correr",pron:"/rʌn/",ex:"I run every morning."},{word:"Eat",type:"verb",trans:"Comer",pron:"/iːt/",ex:"What do you eat for lunch?"},{word:"Sleep",type:"verb",trans:"Dormir",pron:"/sliːp/",ex:"I sleep eight hours a day."},{word:"Work",type:"verb",trans:"Trabajar",pron:"/wɜːrk/",ex:"My father works in a hospital."},{word:"Today",type:"adv",trans:"Hoy",pron:"/təˈdeɪ/",ex:"What are you doing today?"},{word:"Always",type:"adv",trans:"Siempre",pron:"/ˈɔːlweɪz/",ex:"She always smiles."},{word:"Never",type:"adv",trans:"Nunca",pron:"/ˈnevər/",ex:"I never eat junk food."},{word:"Thank you",type:"phrase",trans:"Gracias",pron:"/ˈθæŋk juː/",ex:"Thank you for your help!"}],
+A2:[{word:"Improve",type:"verb",trans:"Mejorar",pron:"/ɪmˈpruːv/",ex:"I want to improve my English."},{word:"Practice",type:"verb",trans:"Practicar",pron:"/ˈpræktɪs/",ex:"She practices piano every day."},{word:"Travel",type:"verb",trans:"Viajar",pron:"/ˈtrævəl/",ex:"I love to travel to new places."},{word:"Expensive",type:"adj",trans:"Caro/a",pron:"/ɪkˈspensɪv/",ex:"That restaurant is very expensive."},{word:"Delicious",type:"adj",trans:"Delicioso/a",pron:"/dɪˈlɪʃəs/",ex:"This food is absolutely delicious!"},{word:"Excited",type:"adj",trans:"Emocionado/a",pron:"/ɪkˈsaɪtɪd/",ex:"I am so excited about the trip!"},{word:"Enough",type:"adj",trans:"Suficiente",pron:"/ɪˈnʌf/",ex:"I don't have enough time."},{word:"Apartment",type:"noun",trans:"Apartamento",pron:"/əˈpɑːrtmənt/",ex:"She lives in a small apartment."},{word:"Weather",type:"noun",trans:"Clima",pron:"/ˈweðər/",ex:"The weather is beautiful today."},{word:"Journey",type:"noun",trans:"Viaje (trayecto)",pron:"/ˈdʒɜːrni/",ex:"The journey took 5 hours."},{word:"Advice",type:"noun",trans:"Consejo",pron:"/ədˈvaɪs/",ex:"Can you give me some advice?"},{word:"Usually",type:"adv",trans:"Usualmente",pron:"/ˈjuːʒuəli/",ex:"I usually wake up at 7am."},{word:"Quickly",type:"adv",trans:"Rápidamente",pron:"/ˈkwɪkli/",ex:"She ran very quickly."},{word:"Probably",type:"adv",trans:"Probablemente",pron:"/ˈprɒbəbli/",ex:"He will probably come tomorrow."},{word:"Although",type:"conj",trans:"Aunque",pron:"/ɔːlˈðoʊ/",ex:"Although it was cold, we went out."},{word:"However",type:"conj",trans:"Sin embargo",pron:"/haʊˈevər/",ex:"I studied hard. However, I failed."},{word:"Besides",type:"adv",trans:"Además",pron:"/bɪˈsaɪdz/",ex:"Besides English, I speak French."},{word:"Actually",type:"adv",trans:"En realidad",pron:"/ˈæktʃuəli/",ex:"Actually, I don't like coffee."},{word:"Experience",type:"noun",trans:"Experiencia",pron:"/ɪkˈspɪriəns/",ex:"She has a lot of experience."},{word:"Opportunity",type:"noun",trans:"Oportunidad",pron:"/ˌɒpərˈtjuːnɪti/",ex:"This is a great opportunity!"}],
+B1:[{word:"Nevertheless",type:"adv",trans:"Sin embargo",pron:"/ˌnevərðəˈles/",ex:"Nevertheless, we went out."},{word:"Furthermore",type:"adv",trans:"Además / Es más",pron:"/ˈfɜːrðərmɔːr/",ex:"Furthermore, the price has increased."},{word:"Consequently",type:"adv",trans:"Consecuentemente",pron:"/ˈkɒnsɪkwəntli/",ex:"Consequently he failed."},{word:"Throughout",type:"prep",trans:"A lo largo de",pron:"/θruːˈaʊt/",ex:"She worked throughout the year."},{word:"Despite",type:"prep",trans:"A pesar de",pron:"/dɪˈspaɪt/",ex:"Despite the rain, we played."},{word:"Gradually",type:"adv",trans:"Gradualmente",pron:"/ˈɡrædʒuəli/",ex:"Her English improved gradually."},{word:"Significant",type:"adj",trans:"Significativo/a",pron:"/sɪɡˈnɪfɪkənt/",ex:"There was a significant improvement."},{word:"Achieve",type:"verb",trans:"Lograr",pron:"/əˈtʃiːv/",ex:"You can achieve anything."},{word:"Determine",type:"verb",trans:"Determinar",pron:"/dɪˈtɜːrmɪn/",ex:"We need to determine the cause."},{word:"Influence",type:"noun/verb",trans:"Influencia",pron:"/ˈɪnfluəns/",ex:"Music influences our mood."},{word:"Challenge",type:"noun",trans:"Desafío",pron:"/ˈtʃælɪndʒ/",ex:"Learning English is a challenge."},{word:"Approach",type:"noun/verb",trans:"Enfoque",pron:"/əˈproʊtʃ/",ex:"We need a different approach."},{word:"Benefit",type:"noun/verb",trans:"Beneficio",pron:"/ˈbenɪfɪt/",ex:"Exercise has many benefits."},{word:"Evidence",type:"noun",trans:"Evidencia",pron:"/ˈevɪdəns/",ex:"There is strong evidence."},{word:"Require",type:"verb",trans:"Requerir",pron:"/rɪˈkwaɪər/",ex:"This job requires experience."},{word:"Consider",type:"verb",trans:"Considerar",pron:"/kənˈsɪdər/",ex:"Consider all options."},{word:"Assume",type:"verb",trans:"Asumir",pron:"/əˈsjuːm/",ex:"Don't assume, ask first."},{word:"Entire",type:"adj",trans:"Entero/a",pron:"/ɪnˈtaɪər/",ex:"She read the entire book."},{word:"Particular",type:"adj",trans:"Particular",pron:"/pərˈtɪkjʊlər/",ex:"In this particular case..."},{word:"Meanwhile",type:"adv",trans:"Mientras tanto",pron:"/ˈmiːnwaɪl/",ex:"Meanwhile, back at the office..."}],
+B2:[{word:"Unprecedented",type:"adj",trans:"Sin precedente",pron:"/ʌnˈpresɪdentɪd/",ex:"This is an unprecedented situation."},{word:"Scrutinize",type:"verb",trans:"Examinar",pron:"/ˈskruːtɪnaɪz/",ex:"The committee will scrutinize the report."},{word:"Paramount",type:"adj",trans:"Primordial",pron:"/ˈpærəmaʊnt/",ex:"Safety is of paramount importance."},{word:"Mitigate",type:"verb",trans:"Mitigar",pron:"/ˈmɪtɪɡeɪt/",ex:"We must mitigate the risks."},{word:"Plausible",type:"adj",trans:"Plausible",pron:"/ˈplɔːzɪbəl/",ex:"That's a plausible explanation."},{word:"Ambiguous",type:"adj",trans:"Ambiguo/a",pron:"/æmˈbɪɡjuəs/",ex:"The instructions were ambiguous."},{word:"Substantiate",type:"verb",trans:"Corroborar",pron:"/səbˈstænʃieɪt/",ex:"Can you substantiate that claim?"},{word:"Nuance",type:"noun",trans:"Matiz",pron:"/ˈnjuːɑːns/",ex:"There is an important nuance."},{word:"Discrepancy",type:"noun",trans:"Discrepancia",pron:"/dɪˈskrepənsi/",ex:"There is a discrepancy in the data."},{word:"Pragmatic",type:"adj",trans:"Pragmático/a",pron:"/præɡˈmætɪk/",ex:"We need a pragmatic solution."},{word:"Eloquent",type:"adj",trans:"Elocuente",pron:"/ˈeləkwənt/",ex:"She gave an eloquent speech."},{word:"Alleviate",type:"verb",trans:"Aliviar",pron:"/əˈliːvieɪt/",ex:"This will help alleviate the problem."},{word:"Coherent",type:"adj",trans:"Coherente",pron:"/koʊˈhɪərənt/",ex:"Please give a coherent explanation."},{word:"Undermine",type:"verb",trans:"Socavar",pron:"/ˌʌndərˈmaɪn/",ex:"This could undermine the project."},{word:"Persist",type:"verb",trans:"Persistir",pron:"/pərˈsɪst/",ex:"If you persist, you will succeed."},{word:"Profound",type:"adj",trans:"Profundo/a",pron:"/prəˈfaʊnd/",ex:"The experience had a profound impact."},{word:"Facilitate",type:"verb",trans:"Facilitar",pron:"/fəˈsɪlɪteɪt/",ex:"Technology can facilitate learning."},{word:"Subsequent",type:"adj",trans:"Posterior",pron:"/ˈsʌbsɪkwənt/",ex:"Subsequent events proved him wrong."},{word:"Convey",type:"verb",trans:"Transmitir",pron:"/kənˈveɪ/",ex:"His tone conveyed deep concern."},{word:"Intrinsic",type:"adj",trans:"Intrínseco/a",pron:"/ɪnˈtrɪnsɪk/",ex:"Learning has intrinsic value."}],
+C1:[{word:"Circumvent",type:"verb",trans:"Eludir / Sortear",pron:"/ˌsɜːkəmˈvent/",ex:"They tried to circumvent the regulations."},{word:"Astute",type:"adj",trans:"Astuto/a / Perspicaz",pron:"/əˈstjuːt/",ex:"She was an astute businesswoman."},{word:"Curtail",type:"verb",trans:"Reducir / Recortar",pron:"/kɜːˈteɪl/",ex:"The budget cuts curtailed the project."},{word:"Ostensibly",type:"adv",trans:"Aparentemente",pron:"/ɒˈstensɪbli/",ex:"Ostensibly, it was a routine visit."},{word:"Repercussion",type:"noun",trans:"Repercusión",pron:"/ˌriːpəˈkʌʃən/",ex:"The decision had serious repercussions."},{word:"Tenacious",type:"adj",trans:"Tenaz",pron:"/tɪˈneɪʃəs/",ex:"She was tenacious in pursuing her goals."},{word:"Corroborate",type:"verb",trans:"Corroborar",pron:"/kəˈrɒbəreɪt/",ex:"The witness corroborated her account."},{word:"Allude",type:"verb",trans:"Aludir",pron:"/əˈluːd/",ex:"He alluded to the problem without naming it."},{word:"Irrevocable",type:"adj",trans:"Irrevocable",pron:"/ɪˈrevəkəbəl/",ex:"The decision was irrevocable."},{word:"Contentious",type:"adj",trans:"Controvertido/a",pron:"/kənˈtenʃəs/",ex:"This is a highly contentious issue."},{word:"Disparate",type:"adj",trans:"Dispar",pron:"/ˈdɪspərɪt/",ex:"These are two disparate viewpoints."},{word:"Pernicious",type:"adj",trans:"Pernicioso/a",pron:"/pəˈnɪʃəs/",ex:"The drug has pernicious side effects."},{word:"Articulate",type:"adj/verb",trans:"Elocuente / Articular",pron:"/ɑːˈtɪkjʊlɪt/",ex:"She is a very articulate speaker."},{word:"Exacerbate",type:"verb",trans:"Exacerbar",pron:"/ɪɡˈzæsəbeɪt/",ex:"Stress can exacerbate the condition."},{word:"Unequivocal",type:"adj",trans:"Inequívoco/a",pron:"/ˌʌnɪˈkwɪvəkəl/",ex:"Her answer was unequivocal."},{word:"Stringent",type:"adj",trans:"Estricto/a",pron:"/ˈstrɪndʒənt/",ex:"Stringent regulations are in place."},{word:"Concede",type:"verb",trans:"Conceder / Admitir",pron:"/kənˈsiːd/",ex:"He conceded that he was wrong."},{word:"Reticent",type:"adj",trans:"Reticente / Reservado",pron:"/ˈretɪsənt/",ex:"She was reticent about her plans."},{word:"Encompass",type:"verb",trans:"Abarcar / Incluir",pron:"/ɪnˈkʌmpəs/",ex:"The project encompasses several areas."},{word:"Proliferate",type:"verb",trans:"Proliferar",pron:"/prəˈlɪfəreɪt/",ex:"Social media has proliferated rapidly."}],
+C2:[{word:"Obfuscate",type:"verb",trans:"Ofuscar",pron:"/ˈɒbfʌskeɪt/",ex:"His jargon only served to obfuscate the matter."},{word:"Perspicacious",type:"adj",trans:"Perspicaz",pron:"/ˌpɜːspɪˈkeɪʃəs/",ex:"A perspicacious observer noticed the flaw."},{word:"Equivocate",type:"verb",trans:"Ser evasivo",pron:"/ɪˈkwɪvəkeɪt/",ex:"Stop equivocating and give a straight answer."},{word:"Inveterate",type:"adj",trans:"Empedernido/a",pron:"/ɪnˈvetərɪt/",ex:"He is an inveterate gambler."},{word:"Cogent",type:"adj",trans:"Convincente",pron:"/ˈkoʊdʒənt/",ex:"She presented a cogent argument."},{word:"Laconic",type:"adj",trans:"Lacónico/a",pron:"/ləˈkɒnɪk/",ex:"His laconic reply told us everything."},{word:"Propitious",type:"adj",trans:"Propicio/a",pron:"/prəˈpɪʃəs/",ex:"The timing seemed propitious."},{word:"Garrulous",type:"adj",trans:"Parlanchín",pron:"/ˈɡærʊləs/",ex:"The garrulous driver talked non-stop."},{word:"Recondite",type:"adj",trans:"Arcano / Oscuro",pron:"/ˈrekəndaɪt/",ex:"The professor studies recondite texts."},{word:"Loquacious",type:"adj",trans:"Locuaz",pron:"/ləˈkweɪʃəs/",ex:"She is loquacious by nature."},{word:"Truculent",type:"adj",trans:"Agresivo/a",pron:"/ˈtrʌkjʊlənt/",ex:"The truculent teenager refused to cooperate."},{word:"Verisimilitude",type:"noun",trans:"Verosimilitud",pron:"/ˌverɪsɪˈmɪlɪtjuːd/",ex:"The novel's verisimilitude is striking."},{word:"Juxtapose",type:"verb",trans:"Yuxtaponer",pron:"/ˈdʒʌkstəpəʊz/",ex:"The director juxtaposes comedy and tragedy."},{word:"Mellifluous",type:"adj",trans:"Melodioso/a",pron:"/məˈlɪfluəs/",ex:"She has a mellifluous voice."},{word:"Circumlocution",type:"noun",trans:"Circunloquio",pron:"/ˌsɜːkəmləˈkjuːʃən/",ex:"Avoid circumlocution; say what you mean."},{word:"Ineffable",type:"adj",trans:"Inefable",pron:"/ɪnˈefəbəl/",ex:"There was an ineffable sadness in his eyes."},{word:"Tendentious",type:"adj",trans:"Tendencioso/a",pron:"/tenˈdenʃəs/",ex:"The report was criticised as tendentious."},{word:"Sycophantic",type:"adj",trans:"Adulador/a",pron:"/ˌsɪkəˈfæntɪk/",ex:"His sycophantic behaviour was transparent."},{word:"Pellucid",type:"adj",trans:"Cristalino / Claro",pron:"/pəˈluːsɪd/",ex:"Her pellucid prose is easy to read."},{word:"Enervate",type:"verb",trans:"Debilitar / Agotar",pron:"/ˈenəveɪt/",ex:"The heat enervated the entire team."}]
+};
+
+// ═══════════════════════════════════════════════════════════════
+// SPEAKING PHRASES
+// ═══════════════════════════════════════════════════════════════
+const speakingPhrases=[
+ {text:"Hello, my name is Ana.",trans:"Hola, mi nombre es Ana.",level:"A1"},
+ {text:"How are you today?",trans:"¿Cómo estás hoy?",level:"A1"},
+ {text:"I am a student.",trans:"Soy estudiante.",level:"A1"},
+ {text:"Nice to meet you.",trans:"Mucho gusto.",level:"A1"},
+ {text:"What time is it?",trans:"¿Qué hora es?",level:"A1"},
+ {text:"I went to the store yesterday.",trans:"Fui a la tienda ayer.",level:"A2"},
+ {text:"She is going to travel next month.",trans:"Ella va a viajar el próximo mes.",level:"A2"},
+ {text:"Can you speak more slowly, please?",trans:"¿Puedes hablar más despacio?",level:"A2"},
+ {text:"I have never been to Europe.",trans:"Nunca he estado en Europa.",level:"B1"},
+ {text:"If it rains, I will stay at home.",trans:"Si llueve, me quedaré en casa.",level:"B1"},
+ {text:"English is spoken all over the world.",trans:"El inglés se habla en todo el mundo.",level:"B1"},
+ {text:"I should have studied harder.",trans:"Debería haber estudiado más.",level:"B2"},
+ {text:"If I had more time, I would learn Japanese.",trans:"Si tuviera más tiempo, aprendería japonés.",level:"B2"},
+ {text:"Not only is she smart, but she is also very kind.",trans:"No solo es inteligente, sino también muy amable.",level:"B2"},
+ {text:"I wish I had taken that opportunity.",trans:"Ojalá hubiera aprovechado esa oportunidad.",level:"C1"},
+ {text:"Despite the challenges, she persevered and succeeded.",trans:"A pesar de los desafíos, perseveró y tuvo éxito.",level:"C1"},
+ {text:"It is essential that every student submit the form on time.",trans:"Es esencial que cada estudiante entregue el formulario a tiempo.",level:"C1"},
+ {text:"Were it not for your help, we would have failed.",trans:"De no ser por tu ayuda, habríamos fracasado.",level:"C2"},
+ {text:"The extent to which language shapes thought remains debated.",trans:"El grado en que el lenguaje moldea el pensamiento sigue debatiéndose.",level:"C2"},
+ {text:"Seldom have I encountered such a compelling argument.",trans:"Pocas veces he encontrado un argumento tan convincente.",level:"C2"},
+];
+
+// ═══════════════════════════════════════════════════════════════
+// BADGES
+// ═══════════════════════════════════════════════════════════════
+const allBadges=[
+ {id:"first_lesson",icon:"🎯",label:"Primer paso",desc:"Completa tu primera lección"},
+ {id:"a1_complete",icon:"🌱",label:"A1 Completo",desc:"Completa todo el nivel A1"},
+ {id:"a2_complete",icon:"📘",label:"A2 Completo",desc:"Completa todo el nivel A2"},
+ {id:"b1_complete",icon:"⚡",label:"B1 Completo",desc:"Completa todo el nivel B1"},
+ {id:"b2_complete",icon:"🌟",label:"B2 Completo",desc:"Completa todo el nivel B2"},
+ {id:"c1_complete",icon:"🔥",label:"C1 Avanzado",desc:"Completa todo el nivel C1"},
+ {id:"c2_complete",icon:"💎",label:"C2 Maestro",desc:"Completa todo el nivel C2"},
+ {id:"streak_3",icon:"🔥",label:"Racha x3",desc:"3 días seguidos"},
+ {id:"streak_7",icon:"🏆",label:"Semana perfecta",desc:"7 días seguidos"},
+ {id:"xp_100",icon:"💫",label:"100 XP",desc:"Gana 100 XP"},
+ {id:"xp_500",icon:"⭐",label:"500 XP",desc:"Gana 500 XP"},
+ {id:"xp_1000",icon:"👑",label:"1000 XP",desc:"Gana 1000 XP"},
+ {id:"vocab_master",icon:"📚",label:"Vocab Master",desc:"Estudia 20 flashcards"},
+ {id:"perfectionist",icon:"💯",label:"Perfeccionista",desc:"Completa una lección con 6/6"},
+];
+
+// ═══════════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════════
+const levelOrder=["A1","A2","B1","B2","C1","C2"];
+let state={xp:0,streak:0,lastLogin:null,unlockedLevel:"A1",completedLessons:[],earnedBadges:[],vocabSeen:0,perfectLessons:0,currentLevel:"A1",currentLesson:null};
+
+function saveState(){try{localStorage.setItem("lb_v4",JSON.stringify(state));}catch(e){}}
+function loadState(){
+  try{let s=localStorage.getItem("lb_v4");if(s)state={...state,...JSON.parse(s)};}catch(e){}
+  let today=new Date().toDateString();
+  if(state.lastLogin!==today){
+    let yesterday=new Date(Date.now()-86400000).toDateString();
+    state.streak=state.lastLogin===yesterday?Math.max(1,(state.streak||0)+1):1;
+    state.lastLogin=today;saveState();
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════════════════════
+const navScreens=["s-home","s-levels","s-chat","s-speaking","s-vocab"];
+function goScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  let el=document.getElementById(id);if(!el)return;
+  el.classList.add('active');
+  document.getElementById('bottom-nav').style.display=navScreens.includes(id)?'flex':'none';
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  const map={'s-home':'nav-home','s-levels':'nav-levels','s-chat':'nav-chat','s-speaking':'nav-speaking','s-vocab':'nav-vocab'};
+  if(map[id]){let nb=document.getElementById(map[id]);if(nb)nb.classList.add('active');}
+  if(id==='s-home')updateHome();
+  if(id==='s-levels')renderLevels();
+  if(id==='s-vocab')renderVocabUI();
+  if(id==='s-speaking')loadSpeakingPhrase();
+  if(id==='s-chat')chatQuizMode=false;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// HOME
+// ═══════════════════════════════════════════════════════════════
+function updateHome(){
+  document.getElementById('h-xp').textContent=state.xp;
+  document.getElementById('h-xpval').textContent=state.xp+' XP';
+  document.getElementById('h-lessons').textContent=state.completedLessons.length;
+  document.getElementById('h-level').textContent=state.unlockedLevel;
+  document.getElementById('h-streak').textContent=state.streak;
+  let pct=Math.min(100,(state.xp%500)/500*100);
+  document.getElementById('h-xpbar').style.width=pct+'%';
+  let total=Object.values(curriculum).reduce((a,lv)=>a+lv.lessons.length,0);
+  document.getElementById('h-pct').textContent=Math.round(state.completedLessons.length/total*100)+'%';
+  let fire=document.getElementById('h-fire');
+  fire.textContent=state.streak>0?'🔥':'💔';
+  fire.className='streak-fire'+(state.streak===0?' dead':'');
+  document.getElementById('daily-desc').textContent=state.completedLessons.length+' lecciones completadas en total';
+  renderBadges();
+}
+function renderBadges(){
+  document.getElementById('badges-scroll').innerHTML=allBadges.map(b=>`<div class="badge-item ${state.earnedBadges.includes(b.id)?'earned':''}" title="${b.desc}"><span class="bi-icon">${b.icon}</span><div class="bi-lbl">${b.label}</div></div>`).join('');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// LEVELS
+// ═══════════════════════════════════════════════════════════════
+function renderLevels(){
+  document.getElementById('levels-grid').innerHTML=levelOrder.map(lv=>{
+    let d=curriculum[lv];
+    let locked=levelOrder.indexOf(lv)>levelOrder.indexOf(state.unlockedLevel);
+    let done=d.lessons.filter(l=>state.completedLessons.includes(l.id)).length;
+    let pct=Math.round(done/d.lessons.length*100);
+    return `<div class="lv-card ${d.cls}${locked?' locked':''}" onclick="${locked?"openModal('modal-locked')":`openLevel('${lv}')`}">
+      <div class="lv-glow"></div>
+      <span class="lvc-icon">${d.icon}</span>
+      <div class="lvc-title">${lv}</div>
+      <div class="lvc-sub">${d.title}</div>
+      <div class="lvc-count">${done}/${d.lessons.length} lecciones</div>
+      <div class="lvc-bar"><div class="lvc-bar-fill" style="width:${pct}%"></div></div>
+      <span class="lv-badge">${locked?'🔒':done===d.lessons.length?'✅':''}</span>
+    </div>`;
+  }).join('');
+}
+function openLevel(lv){
+  state.currentLevel=lv;
+  document.getElementById('lessons-title').textContent=curriculum[lv].icon+' Nivel '+lv;
+  renderLessons(lv);goScreen('s-lessons');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// LESSONS
+// ═══════════════════════════════════════════════════════════════
+function renderLessons(lv){
+  let lessons=curriculum[lv].lessons;
+  document.getElementById('lesson-list').innerHTML=lessons.map((l,i)=>{
+    let done=state.completedLessons.includes(l.id);
+    let accessible=i===0||done||state.completedLessons.includes(lessons[i-1].id);
+    let cls=done?'done':accessible?'go':'locked';
+    return `<div class="lesson-item ${cls}" onclick="${accessible?`openLesson('${lv}',${i})`:"openModal('modal-locked')"}">
+      <span class="li-icon">${l.icon}</span>
+      <div class="li-info"><div class="li-title">${l.title}</div><div class="li-sub">${l.exercises.length} ejercicios</div></div>
+      <span class="li-badge">${done?'✅':accessible?'▶️':'🔒'}</span>
+    </div>`;
+  }).join('');
+}
+function openLesson(lv,idx){
+  let level=curriculum[lv];
+  if(!level||!level.lessons[idx])return;
+  state.currentLesson=level.lessons[idx];state.currentLevel=lv;
+  document.getElementById('theory-title').textContent=state.currentLesson.icon+' '+state.currentLesson.title;
+  document.getElementById('theory-body').innerHTML=state.currentLesson.theory;
+  document.getElementById('theory-back').onclick=()=>goScreen('s-lessons');
+  document.getElementById('theory-examples').innerHTML=state.currentLesson.examples.map(e=>`<span class="ex-chip">${e}</span>`).join('');
+  goScreen('s-theory');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// EXERCISES
+// ═══════════════════════════════════════════════════════════════
+let exList=[],exIdx=0,exScore=0,exHearts=3,orderSel=[];
+
+function startExercises(){
+  if(!state.currentLesson)return;
+  exList=[...state.currentLesson.exercises];exIdx=0;exScore=0;exHearts=3;orderSel=[];
+  goScreen('s-exercise');
+  document.getElementById('bottom-nav').style.display='none';
+  renderExercise();
+}
+
+function renderExercise(){
+  let ex=exList[exIdx];
+  document.getElementById('ex-fill').style.width=Math.round(exIdx/exList.length*100)+'%';
+  document.getElementById('ex-count').textContent=(exIdx+1)+'/'+exList.length;
+  document.getElementById('ex-hearts').textContent='❤️'.repeat(Math.max(0,exHearts))+'🖤'.repeat(Math.max(0,3-exHearts));
+  document.getElementById('feedback').style.display='none';
+  document.getElementById('hint-txt').style.display='none';
+  document.getElementById('btn-check').style.display='block';
+  document.getElementById('btn-next').style.display='none';
+  const tp={fill:{bg:"rgba(0,245,212,.1)",c:"var(--cyan)",lbl:"Rellena"},multiple:{bg:"rgba(76,201,240,.1)",c:"var(--sky)",lbl:"Opción múltiple"},truefalse:{bg:"rgba(255,214,10,.1)",c:"var(--yellow)",lbl:"Verdadero / Falso"},order:{bg:"rgba(124,58,237,.14)",c:"var(--violet)",lbl:"Ordena"}};
+  let t=tp[ex.type]||tp.fill;
+  let html=`<span class="ex-pill" style="background:${t.bg};color:${t.c}">${t.lbl}</span><div class="ex-q">${ex.q}</div>`;
+  if(ex.type==='fill'){
+    html+=`<input class="fill-in" id="fill-in" placeholder="Escribe tu respuesta..." onkeydown="if(event.key==='Enter')checkAnswer()">`;
+    if(ex.hint)setTimeout(()=>{let h=document.getElementById('hint-txt');if(h){h.textContent='💡 '+ex.hint;h.style.display='block';}},7000);
+  }else if(ex.type==='multiple'){
+    html+=`<div class="mc-grid">`+ex.options.map((o,i)=>`<button class="mc-btn" id="mc${i}" onclick="pickMC(this,'${esc(o)}','${esc(ex.answer)}')">${o}</button>`).join('')+'</div>';
+  }else if(ex.type==='truefalse'){
+    html+=`<div class="tf-row"><button class="tf-btn" id="tf-t" onclick="pickTF(true,${ex.answer})">✅ Verdadero</button><button class="tf-btn" id="tf-f" onclick="pickTF(false,${ex.answer})">❌ Falso</button></div>`;
+  }else if(ex.type==='order'){
+    orderSel=[];
+    let sh=[...ex.words].sort(()=>Math.random()-.5);
+    html+=`<div style="font-size:.75rem;color:var(--text2);margin-bottom:8px">Toca las palabras en orden:</div>`;
+    html+=`<div class="word-bank">`+sh.map((w,i)=>`<button class="w-chip" id="wc${i}" onclick="addWord(this,'${esc(w)}')">${w}</button>`).join('')+`</div>`;
+    html+=`<div class="order-drop" id="order-drop"><span class="order-ph">Tu respuesta aquí…</span></div>`;
+    html+=`<button onclick="clearOrder()" style="background:none;border:none;color:var(--coral);font-family:Poppins,sans-serif;font-weight:700;font-size:.78rem;cursor:pointer;margin-top:8px">↩ Limpiar</button>`;
+  }
+  document.getElementById('ex-card').innerHTML=html;
+  if(ex.type==='fill')setTimeout(()=>{let f=document.getElementById('fill-in');if(f)f.focus();},100);
+}
+
+function esc(s){return(s||'').replace(/'/g,"\\'").replace(/"/g,'&quot;');}
+
+function pickMC(btn,val,correct){
+  if(document.getElementById('btn-next').style.display==='block')return;
+  document.querySelectorAll('.mc-btn').forEach(b=>b.disabled=true);
+  let ok=val===correct;
+  btn.classList.add(ok?'ok':'no');
+  if(!ok)document.querySelectorAll('.mc-btn').forEach(b=>{if(b.textContent.trim()===correct)b.classList.add('reveal');});
+  doFeedback(ok,correct);
+  if(ok)exScore++;else exHearts--;
+  updHearts();
+  document.getElementById('btn-check').style.display='none';
+  document.getElementById('btn-next').style.display='block';
+}
+function pickTF(val,correct){
+  if(document.getElementById('btn-next').style.display==='block')return;
+  ['tf-t','tf-f'].forEach(id=>{let b=document.getElementById(id);if(b)b.disabled=true;});
+  let ok=val===correct;
+  let btn=document.getElementById(val?'tf-t':'tf-f');if(btn)btn.classList.add(ok?'ok':'no');
+  if(!ok){let rev=document.getElementById(correct?'tf-t':'tf-f');if(rev)rev.classList.add('reveal');}
+  doFeedback(ok,correct?'Verdadero':'Falso');
+  if(ok)exScore++;else exHearts--;
+  updHearts();
+  document.getElementById('btn-check').style.display='none';
+  document.getElementById('btn-next').style.display='block';
+}
+function addWord(btn,word){
+  if(btn.classList.contains('used'))return;
+  btn.classList.add('used');orderSel.push({word,btn});
+  let drop=document.getElementById('order-drop');
+  let ph=drop.querySelector('.order-ph');if(ph)ph.remove();
+  let chip=document.createElement('span');chip.className='ow-chip';chip.textContent=word;
+  chip.onclick=()=>{chip.remove();btn.classList.remove('used');orderSel=orderSel.filter(o=>o.btn!==btn);if(!document.getElementById('order-drop').children.length)document.getElementById('order-drop').innerHTML='<span class="order-ph">Tu respuesta aquí…</span>';};
+  drop.appendChild(chip);
+}
+function clearOrder(){orderSel.forEach(o=>o.btn.classList.remove('used'));orderSel=[];document.getElementById('order-drop').innerHTML='<span class="order-ph">Tu respuesta aquí…</span>';}
+function updHearts(){document.getElementById('ex-hearts').textContent='❤️'.repeat(Math.max(0,exHearts))+'🖤'.repeat(Math.max(0,3-exHearts));}
+
+// ── NORMALIZE ──
+function normalize(s){
+  return(s||'').toLowerCase().trim()
+    .replace(/[\u2018\u2019\u201A\u201B\u2032\u02BC]/g,"'")
+    .replace(/[\u201C\u201D]/g,'"')
+    .replace(/\s+/g,' ')
+    .replace(/[\u2013\u2014]/g,'-');
+}
+
+function checkAnswer(){
+  let ex=exList[exIdx];
+  if(ex.type==='fill'){
+    let inp=document.getElementById('fill-in');
+    let val=normalize(inp.value);
+    let correct=normalize(ex.answer);
+    let alts=correct.split('/').map(a=>a.trim());
+    const cm={"didn't":"did not","doesn't":"does not","isn't":"is not","aren't":"are not","won't":"will not","can't":"cannot","couldn't":"could not","shouldn't":"should not","wouldn't":"would not","haven't":"have not","hasn't":"has not","hadn't":"had not","weren't":"were not","wasn't":"was not"};
+    let ve=val,ce=correct;
+    for(let k in cm){ve=ve.replace(k,cm[k]);ce=ce.replace(k,cm[k]);}
+    alts.forEach(a=>{let ae=a;for(let k in cm){ae=ae.replace(k,cm[k]);}alts.push(ae);});
+    let ok=alts.some(a=>a===val)||val===correct||ve===ce||val.replace(/^(the|a|an)\s/,'')===correct.replace(/^(the|a|an)\s/,'');
+    inp.classList.add(ok?'ok':'no');inp.disabled=true;
+    doFeedback(ok,ex.answer);
+    if(ok)exScore++;else exHearts--;
+    updHearts();
+    document.getElementById('btn-check').style.display='none';
+    document.getElementById('btn-next').style.display='block';
+  }else if(ex.type==='order'){
+    let given=orderSel.map(o=>o.word).join(' ');
+    let ok=normalize(given)===normalize(ex.answer);
+    doFeedback(ok,'Respuesta: '+ex.answer);
+    if(ok)exScore++;else exHearts--;
+    updHearts();
+    document.getElementById('btn-check').style.display='none';
+    document.getElementById('btn-next').style.display='block';
+    let drop=document.getElementById('order-drop');
+    if(drop){drop.style.borderColor=ok?'var(--green)':'var(--coral)';if(!ok)drop.innerHTML+='<br><span style="font-size:.76rem;color:var(--cyan)">✅ '+ex.answer+'</span>';}
+  }else{
+    document.getElementById('btn-next').style.display='block';
+  }
+}
+
+function doFeedback(ok,answer){
+  let fb=document.getElementById('feedback');
+  fb.className='feedback '+(ok?'ok':'no');
+  fb.innerHTML=ok?'✅ ¡Correcto! 🔥':'❌ Incorrecto — Respuesta: <b>'+answer+'</b>';
+  fb.style.display='block';
+}
+function nextExercise(){exIdx++;if(exIdx>=exList.length)showResult();else renderExercise();}
+
+function showResult(){
+  let total=exList.length;
+  let pct=Math.round(exScore/total*100);
+  let xpEarned=Math.round(pct/100*80)+20;
+  let lid=state.currentLesson.id;
+  let isNew=!state.completedLessons.includes(lid);
+  if(isNew){state.completedLessons.push(lid);state.xp+=xpEarned;if(exScore===total)state.perfectLessons++;}
+  checkUnlocks();checkBadges();saveState();
+  document.getElementById('res-emoji').textContent=pct>=80?'🎉':pct>=50?'👍':'📚';
+  document.getElementById('res-title').textContent=pct>=80?'¡Excelente!':pct>=50?'¡Bien hecho!':'¡Sigue intentando!';
+  document.getElementById('res-desc').textContent=state.currentLesson.title+' completada';
+  document.getElementById('res-xp').textContent=isNew?'+'+xpEarned+' XP':'Ya completada';
+  document.getElementById('res-score').textContent=exScore+'/'+total;
+  document.getElementById('res-pct').textContent=pct+'%';
+  document.getElementById('res-xp2').textContent=isNew?'+'+xpEarned:'0 (ya completada)';
+  goScreen('s-result');
+  document.getElementById('bottom-nav').style.display='none';
+  if(pct>=80&&isNew){spawnConfetti();spawnXPFloat('+'+xpEarned+' XP');}
+}
+
+function checkUnlocks(){
+  levelOrder.forEach((lv,i)=>{
+    let d=curriculum[lv];
+    if(d.lessons.every(l=>state.completedLessons.includes(l.id))&&i<levelOrder.length-1){
+      let next=levelOrder[i+1];
+      if(levelOrder.indexOf(next)>levelOrder.indexOf(state.unlockedLevel)){
+        state.unlockedLevel=next;showToast('🎉 ¡Nivel '+next+' desbloqueado!');
+      }
+    }
+  });
+}
+function checkBadges(){
+  let toEarn=[];
+  if(state.completedLessons.length>=1)toEarn.push('first_lesson');
+  levelOrder.forEach(lv=>{if(curriculum[lv].lessons.every(l=>state.completedLessons.includes(l.id)))toEarn.push(lv.toLowerCase()+'_complete');});
+  if(state.streak>=3)toEarn.push('streak_3');if(state.streak>=7)toEarn.push('streak_7');
+  if(state.xp>=100)toEarn.push('xp_100');if(state.xp>=500)toEarn.push('xp_500');if(state.xp>=1000)toEarn.push('xp_1000');
+  if(state.vocabSeen>=20)toEarn.push('vocab_master');if(state.perfectLessons>=1)toEarn.push('perfectionist');
+  toEarn.forEach(b=>{if(!state.earnedBadges.includes(b)){state.earnedBadges.push(b);let badge=allBadges.find(x=>x.id===b);if(badge)setTimeout(()=>showToast('🏅 Logro: '+badge.label),700);}});
+}
+
+function confirmLeave(){openModal('modal-leave');}
+function doLeave(){closeModal('modal-leave');goScreen('s-lessons');}
+function openModal(id){document.getElementById(id).classList.add('show');}
+function closeModal(id){document.getElementById(id).classList.remove('show');}
+
+function showToast(msg){
+  let old=document.querySelector('.toast');if(old)old.remove();
+  let t=document.createElement('div');t.className='toast';t.textContent=msg;
+  document.body.appendChild(t);setTimeout(()=>{if(t.parentNode)t.remove();},3000);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// CHAT AI — 100% GRATIS — SIN API — SIN COBROS
+// ═══════════════════════════════════════════════════════════════
+const grammarDB={
+  "verb to be":{t:"VERB TO BE",b:`📌 I <b>am</b> | You <b>are</b> | He/She/It <b>is</b> | We/They <b>are</b><br>Negativo: I'm not | She isn't | They aren't<br>⚠️ NUNCA: He <del>are</del> | I <del>is</del>`},
+  "present simple":{t:"PRESENT SIMPLE",b:`📌 Rutinas. <b>He/She/It → +s/+es/+ies</b>: works, goes, studies<br>Negativo: I <b>don't</b> | He <b>doesn't</b><br>Pregunta: <b>Do</b> you? / <b>Does</b> she?<br>⏰ always, usually, every day, never`},
+  "present continuous":{t:"PRESENT CONTINUOUS",b:`📌 Ahora mismo. <b>am/is/are + verb+ing</b><br>I'm eating | She's talking | They aren't sleeping<br>🔧 run→running | make→making | talk→talking<br>⏰ now, right now, at the moment`},
+  "past simple":{t:"PAST SIMPLE",b:`📌 Pasado terminado.<br>Regular→+ed: worked, studied, played<br>Irregular: go→went | eat→ate | have→had | see→saw | buy→bought<br>Negativo: <b>didn't</b> + verb base | Pregunta: <b>Did</b>...?<br>⏰ yesterday, last week, in 2020, ago`},
+  "present perfect":{t:"PRESENT PERFECT",b:`📌 Experiencias / efecto actual. <b>have/has + PP</b><br>I have visited Paris. | She has just finished.<br>📌 Fecha → Past Simple | ever/never/yet → PP<br>⏰ ever, never, already, yet, just, for, since`},
+  "past continuous":{t:"PAST CONTINUOUS",b:`📌 Acción en progreso en el pasado. <b>was/were + verb+ing</b><br>I was sleeping when you called.<br>She was cooking while he was watching TV.<br>⏰ when, while, at 8pm yesterday`},
+  "future will":{t:"FUTURE WITH WILL",b:`📌 Predicciones / decisiones espontáneas. <b>will + verb base</b><br>It will rain. | I'll help you! | She won't be late.<br>⚠️ NUNCA: I <del>wills</del> | I will <del>to</del> go`},
+  "going to":{t:"GOING TO",b:`📌 Planes decididos / predicciones con evidencia.<br><b>am/is/are + going to + verb</b><br>I'm going to study medicine.<br>⚖️ Will → espontáneo | Going to → ya planeado`},
+  "first conditional":{t:"FIRST CONDITIONAL",b:`📌 Situaciones posibles.<br><b>If + Present Simple, will + verb base</b><br>If it rains, I will stay home.<br>⚠️ IF usa PRESENTE — ¡NO will!`},
+  "second conditional":{t:"SECOND CONDITIONAL",b:`📌 Situaciones hipotéticas.<br><b>If + Past Simple, would + verb base</b><br>If I were rich, I would travel. (were para todos)<br>⚠️ NUNCA: <del>If I would have...</del>`},
+  "third conditional":{t:"THIRD CONDITIONAL",b:`📌 Hipotéticas en el PASADO. Arrepentimiento.<br><b>If + Past Perfect, would have + PP</b><br>If I had studied, I would have passed.<br>💔 "Si hubiera..."`},
+  "passive voice":{t:"PASSIVE VOICE",b:`📌 Presente: is/are + PP | Pasado: was/were + PP<br>Futuro: will be + PP | PP: has/have been + PP<br>Modal: should/can + be + PP<br>English is spoken worldwide.`},
+  "reported speech":{t:"REPORTED SPEECH",b:`📌 am/is→was | are→were | will→would | can→could | have→had<br>'I am tired.' → She said she was tired.<br>'I will come.' → He said he would come.<br>🔑 Pronombres también cambian: I→he/she`},
+  "modal verbs":{t:"MODAL VERBS",b:`📌 Obligación: must / have to / mustn't / don't have to<br>Consejo: should / shouldn't<br>Habilidad: can / could<br>Pasados: should/could/must/would have + PP<br>⚠️ Siempre: modal + verb BASE`},
+  "gerund":{t:"GERUNDS & INFINITIVES",b:`📌 Gerund(ing): I enjoy reading. Swimming is healthy.<br>→ enjoy, finish, avoid, mind, keep, practice<br>Infinitive(to): I want to go. She decided to study.<br>→ want, decide, hope, plan, need, agree<br>⚠️ I enjoy <del>to swim</del> | I want <del>swimming</del>`},
+  "wish":{t:"WISH & IF ONLY",b:`📌 Deseo presente: wish + were/past simple<br>I wish I were taller. | If only I had more time.<br>Arrepentimiento: wish + past perfect<br>I wish I had studied more.<br>Queja: wish + wouldn't<br>I wish you wouldn't do that!`},
+  "subjunctive":{t:"SUBJUNCTIVE MOOD",b:`📌 Verbo BASE para todas las personas:<br>I suggest that he be informed.<br>It is vital that she attend. (no attends!)<br>Activado por: suggest, recommend, insist, demand, it is essential/vital that...`},
+  "conditionals":{t:"TODOS LOS CONDITIONALS",b:`📌 0: If + present, present → siempre verdad<br>1st: If + present, will + base → posible<br>2nd: If + past, would + base → hipotético<br>3rd: If + past perfect, would have + PP → pasado<br>Mixed: combina 2nd + 3rd`},
+};
+
+const quizBank=[
+  {q:"Completa: She ___ to school every day.",a:"goes",exp:"Present simple, 3ra persona → goes"},
+  {q:"Completa: I ___ (not eat) breakfast yet.",a:"haven't eaten",exp:"Present Perfect negativo → haven't + PP"},
+  {q:"Completa: If it rains, I ___ stay home.",a:"will",exp:"First conditional → will + verb base"},
+  {q:"V/F: 'She don't like pizza' es correcto.",a:"falso",exp:"3ra persona: She DOESN'T like pizza."},
+  {q:"Completa: The car ___ (steal) last night.",a:"was stolen",exp:"Pasiva pasado → was + PP"},
+  {q:"Completa: I enjoy ___ (swim).",a:"swimming",exp:"enjoy → gerund (ing)"},
+  {q:"¿Pasado de 'go'?",a:"went",exp:"go es irregular: went"},
+  {q:"Completa: If I ___ (be) rich, I would travel.",a:"were",exp:"Second conditional → were para todas las personas"},
+  {q:"Completa: She ___ (study) when I called.",a:"was studying",exp:"Past continuous → was + verb+ing"},
+  {q:"¿'a' o 'an'?: ___ umbrella",a:"an",exp:"Umbrella empieza con sonido vocal → an umbrella"},
+  {q:"Completa: I wish I ___ (be) taller.",a:"were",exp:"wish + past subjunctive → were"},
+  {q:"Completa: By Friday, I ___ (finish) the project.",a:"will have finished",exp:"Future Perfect → will have + PP"},
+  {q:"V/F: 'I insist that he attends' usa el subjuntivo correctamente.",a:"falso",exp:"Subjuntivo: I insist that he ATTEND (verbo base, sin s)"},
+  {q:"Completa: I wish I ___ (study) harder. (arrepentimiento)",a:"had studied",exp:"wish + past perfect para arrepentimiento"},
+];
+
+let chatQuizMode=false,chatQuizAns='',chatQuizExp='';
+
+function getAIResponse(msg){
+  let m=msg.toLowerCase().trim();
+  if(chatQuizMode){
+    chatQuizMode=false;
+    let ua=normalize(m).replace(/[.,!?]/g,'');
+    let ca=normalize(chatQuizAns).replace(/[.,!?]/g,'');
+    let ok=ua===ca||ua.includes(ca)||ca.includes(ua);
+    return ok?`✅ <b>¡Correcto!</b> "${chatQuizAns}" 🎉<br><br>💡 ${chatQuizExp}<br><br>¿Otro quiz? Escribe <b>quiz</b> 🎯`:`❌ La respuesta correcta es: <b>${chatQuizAns}</b><br><br>💡 ${chatQuizExp}<br><br>¿Otro intento? Escribe <b>quiz</b> 💪`;
+  }
+  if(m.startsWith('corrige')||m.startsWith('correct')||m.startsWith('revisa')||m.startsWith('check')){
+    return correctGrammar(msg.replace(/^(corrige?|correct\s*:|revisa\s*:|check\s*:)\s*/i,'').trim());
+  }
+  if(m.includes('quiz')||m.includes('test me')||m.includes('ejercicio')||m.includes('pregúntame')){
+    let q=quizBank[Math.floor(Math.random()*quizBank.length)];
+    chatQuizMode=true;chatQuizAns=q.a;chatQuizExp=q.exp;
+    return `🎯 <b>MINI QUIZ:</b><br><br>${q.q}<br><br><i>Escribe tu respuesta 👇</i>`;
+  }
+  for(let k in grammarDB){if(m.includes(k)){let g=grammarDB[k];return `📚 <b>${g.t}</b><br><br>${g.b}<br><br>💬 ¿Quiz sobre esto? Escribe <b>quiz</b>`;}}
+  if(m.includes('irregular')){return `📋 <b>VERBOS IRREGULARES ESENCIALES:</b><br><br>be→was/were | have→had | do→did | go→went<br>eat→ate | see→saw | come→came | take→took<br>make→made | give→gave | know→knew | think→thought<br>buy→bought | write→wrote | read→read | say→said<br>tell→told | find→found | leave→left | meet→met<br>speak→spoke | begin→began | break→broke<br><br>💡 Aprende 5 por día. ¡Escribe <b>quiz</b> para practicar!`;}
+  if(m.includes('pronunciation')||m.includes('pronuncia')){return `🗣️ <b>PRONUNCIACIÓN — TIPS:</b><br><br>🔊 <b>'th'</b> → lengua entre dientes: <i>think, the</i><br>🔊 <b>'v'</b> → dientes sobre labio: <i>very, voice</i><br>🔊 <b>'r'</b> → no vibra como en español: <i>red, road</i><br>🔊 Vocal larga vs corta: <i>ship/sheep, bit/beat</i><br><br>💡 Usa Google Translate → toca 🔊 para escuchar<br>💡 ¡Practica en voz alta! El silencio no enseña pronunciación`;}
+  if(m.includes('tip')||m.includes('consejo')||m.includes('how to learn')||m.includes('cómo aprend')){return `🚀 <b>TIPS PARA APRENDER INGLÉS RÁPIDO:</b><br><br>1️⃣ <b>20 min diarios</b> > 3 horas un sábado<br>2️⃣ <b>Series en inglés</b> con subtítulos en inglés<br>3️⃣ <b>Piensa en inglés</b> — describe tu día mentalmente<br>4️⃣ <b>Habla sin miedo</b> — equivocarse es aprender<br>5️⃣ <b>Esta app</b> — completa 1 lección al día<br>6️⃣ <b>Música</b> — busca letras y tradúcelas<br>7️⃣ <b>Habla solo</b> — practica frente al espejo<br><br>¡Tú puedes! 💪`;}
+  if(m.includes('hello')||m.includes('hola')||m.startsWith('hi')){return `Hello! 👋 ¡Hola! Soy tu tutor gratuito.<br><br>📚 <b>Gramática:</b> <i>"explain past simple"</i><br>🔍 <b>Corrección:</b> <i>"corrige: She go to school"</i><br>🎯 <b>Quiz:</b> <i>"quiz"</i><br>💡 <b>Tips:</b> <i>"tips"</i><br>📋 <b>Verbos:</b> <i>"irregular verbs"</i>`;}
+  if(m.includes('thank')||m.includes('gracias')){return `You're welcome! 😊 ¡De nada!<br><br><b>Every expert was once a beginner.</b> ¡Sigue así! 🌟`;}
+  if((m.includes('will')&&m.includes('going'))&&(m.includes('differenc')||m.includes('vs'))){return `⚖️ <b>WILL vs GOING TO:</b><br><br><b>Will</b> → decisión espontánea:<br><i>"I'll answer the phone!"</i><br><br><b>Going to</b> → plan previo o evidencia:<br><i>"I'm going to the gym."</i> | <i>"It's going to rain."</i>`;}
+  if((m.includes('past')&&m.includes('perfect'))&&(m.includes('differenc')||m.includes('vs'))){return `⚖️ <b>PAST SIMPLE vs PRESENT PERFECT:</b><br><br><b>Past Simple</b> + fecha:<br>✅ I went to London in 2019.<br><br><b>Present Perfect</b> sin fecha / efecto actual:<br>✅ I have been to London. (experiencia)`;}
+  let f=["Para ayudarte mejor:<br>📚 <i>'explain present perfect'</i><br>🔍 <i>'corrige: She don't like pizza'</i><br>🎯 <i>'quiz'</i>","Hmm 🤔 Prueba con el nombre de una gramática:<br><i>past simple, conditionals, passive, wish, subjunctive...</i>","¡Sigo aquí! 😊 Escribe el tema que quieres entender o <b>quiz</b> para practicar."];
+  return f[Math.floor(Math.random()*f.length)];
+}
+
+function correctGrammar(s){
+  if(!s||s.length<3)return `✏️ Escribe así:<br><i>corrige: She go to school every day</i>`;
+  let c=[],lo=s.toLowerCase();
+  if(/\bhe\s+are\b|\bshe\s+are\b|\bit\s+are\b/.test(lo))c.push("❌ He/She/It usa <b>IS</b> → <i>She <b>is</b> happy.</i>");
+  if(/\bi\s+is\b/.test(lo))c.push("❌ I usa <b>AM</b> → <i>I <b>am</b> a student.</i>");
+  if(/\bwe\s+is\b|\bthey\s+is\b/.test(lo))c.push("❌ We/They usa <b>ARE</b>.");
+  if(/\bcan\s+to\b|\bshould\s+to\b|\bmust\s+to\b|\bwould\s+to\b/.test(lo))c.push("❌ Después de modales NO va 'to' → <i>I can <b>swim</b>.</i>");
+  if(/\bdid\s+\w+ed\b|\bdid\s+went\b|\bdid\s+ate\b/.test(lo))c.push("❌ Con DID → verbo BASE → <i>Did you <b>go</b>?</i>");
+  if(/\bi\s+goed\b|\bshe\s+goed\b/.test(lo))c.push("❌ GO es irregular → <i>I <b>went</b>.</i>");
+  if(/\ba\s+[aeiou]/i.test(s))c.push("❌ Antes de vocal → <b>AN</b> → <i><b>an</b> apple.</i>");
+  if(/\bmore\s+(tall|big|fast|small|old|young|hot|cold)\b/.test(lo))c.push("❌ Adjetivos cortos no usan 'more' → <i>tall → <b>taller</b>.</i>");
+  if(/\bhe\s+don't\b|\bshe\s+don't\b/.test(lo))c.push("❌ He/She usa <b>DOESN'T</b>.");
+  if(/\bi\s+am\s+agree\b/.test(lo))c.push("❌ 'Agree' no usa 'am' → <i>I <b>agree</b>.</i>");
+  if(/\bi\s+have\s+went\b/.test(lo))c.push("❌ Con have → participio → <i>I have <b>gone</b>.</i>");
+  return c.length?`🔍 <b>Revisé: "<i>${eh(s)}</i>"</b><br><br>${c.join('<br><br>')}<br><br>💪 ¡Sigue practicando!`:
+    `✅ <b>¡Tu frase parece correcta!</b> 🎉<br><i>"${eh(s)}"</i><br><br>Escribe <b>quiz</b> para seguir practicando.`;
+}
+function eh(t){return(t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function quickChat(msg){document.getElementById('chat-input').value=msg;sendChat();}
+
+// ── TTS (Text-to-Speech) ──────────────────────────────────────
+let ttsEnabled=true;
+let ttsVoice=null;
+
+function initTTS(){
+  if(!window.speechSynthesis)return;
+  function pickVoice(){
+    let voices=speechSynthesis.getVoices();
+    // Prefer native English voices
+    ttsVoice=voices.find(v=>v.lang==='en-US'&&v.localService)
+      ||voices.find(v=>v.lang==='en-GB'&&v.localService)
+      ||voices.find(v=>v.lang.startsWith('en')&&v.localService)
+      ||voices.find(v=>v.lang.startsWith('en'))
+      ||voices[0]||null;
+  }
+  pickVoice();
+  if(speechSynthesis.onvoiceschanged!==undefined){
+    speechSynthesis.onvoiceschanged=pickVoice;
+  }
+}
+
+function speakText(text){
+  if(!ttsEnabled||!window.speechSynthesis)return;
+  // Strip HTML tags and emoji for cleaner TTS
+  let clean=text.replace(/<[^>]+>/g,' ').replace(/[🎯📚✅❌💡🔍📋🗣️🔊💪🌟😊👋🤖]/g,'').replace(/\s+/g,' ').trim();
+  if(!clean||clean.length<2)return;
+  speechSynthesis.cancel(); // stop any ongoing speech
+  let utt=new SpeechSynthesisUtterance(clean);
+  utt.lang='en-US';
+  utt.rate=0.92;
+  utt.pitch=1.05;
+  utt.volume=1;
+  if(ttsVoice)utt.voice=ttsVoice;
+  speechSynthesis.speak(utt);
+}
+
+function toggleTTS(){
+  ttsEnabled=!ttsEnabled;
+  let btn=document.getElementById('tts-toggle');
+  if(!btn)return;
+  if(ttsEnabled){
+    btn.textContent='🔊 Voz ON';
+    btn.style.background='rgba(0,255,204,.1)';
+    btn.style.borderColor='rgba(0,255,204,.25)';
+    btn.style.color='var(--mn)';
+    showToast('🔊 Voz del AI activada');
+  }else{
+    speechSynthesis.cancel();
+    btn.textContent='🔇 Voz OFF';
+    btn.style.background='rgba(255,255,255,.06)';
+    btn.style.borderColor='rgba(255,255,255,.12)';
+    btn.style.color='var(--t2)';
+    showToast('🔇 Voz del AI desactivada');
+  }
+}
+
+// ── CHAT MICROPHONE (Speech-to-Text) ─────────────────────────
+let chatRecognition=null;
+let chatListening=false;
+
+function toggleChatMic(){
+  if(!('webkitSpeechRecognition'in window||'SpeechRecognition'in window)){
+    showToast('⚠️ Usa Chrome o Edge para el micrófono');
+    return;
+  }
+  if(chatListening){stopChatMic();return;}
+  let SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  chatRecognition=new SR();
+  chatRecognition.lang='es-CO'; // Spanish input → the AI auto-detects and responds
+  chatRecognition.continuous=false;
+  chatRecognition.interimResults=false;
+  chatRecognition.onstart=()=>{
+    chatListening=true;
+    let btn=document.getElementById('chat-mic-btn');
+    if(btn){btn.textContent='🔴';btn.classList.add('listening');}
+    document.getElementById('chat-input').placeholder='Escuchando… habla en español o inglés';
+  };
+  chatRecognition.onresult=(e)=>{
+    let transcript=e.results[0][0].transcript;
+    document.getElementById('chat-input').value=transcript;
+    stopChatMic();
+    setTimeout(()=>sendChat(),300);
+  };
+  chatRecognition.onend=()=>stopChatMic();
+  chatRecognition.onerror=(e)=>{
+    stopChatMic();
+    if(e.error==='not-allowed'){showToast('🎤 Activa el micrófono en el navegador');}
+    else{showToast('⚠️ Error de micrófono: '+e.error);}
+  };
+  chatRecognition.start();
+}
+
+function stopChatMic(){
+  chatListening=false;
+  if(chatRecognition){try{chatRecognition.stop();}catch(e){}}
+  let btn=document.getElementById('chat-mic-btn');
+  if(btn){btn.textContent='🎤';btn.classList.remove('listening');}
+  document.getElementById('chat-input').placeholder='Escribe o usa el 🎤...';
+}
+
+// ── SEND CHAT (with TTS response) ────────────────────────────
+function sendChat(){
+  let inp=document.getElementById('chat-input');
+  let msg=inp.value.trim();if(!msg)return;inp.value='';
+  let box=document.getElementById('chat-messages');
+  box.innerHTML+=`<div class="msg user">${eh(msg)}</div>`;
+  box.innerHTML+=`<div class="msg ai" id="typing"><div class="ai-tag">LingoBoom AI</div><span style="opacity:.6">✍️ …</span></div>`;
+  box.scrollTop=box.scrollHeight;
+  setTimeout(()=>{
+    let t=document.getElementById('typing');if(t)t.remove();
+    let response=getAIResponse(msg);
+    box.innerHTML+=`<div class="msg ai"><div class="ai-tag">LingoBoom AI 🤖</div>${response}</div>`;
+    box.scrollTop=box.scrollHeight;
+    // Read AI response aloud (only English/key content)
+    speakText(response);
+  },380);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// SPEAKING
+// ═══════════════════════════════════════════════════════════════
+let phraseIdx=0,recognition=null,isListening=false;
+function loadSpeakingPhrase(){phraseIdx=Math.floor(Math.random()*speakingPhrases.length);showPhrase();}
+function showPhrase(){
+  let p=speakingPhrases[phraseIdx];
+  document.getElementById('speak-phrase').textContent=p.text;
+  document.getElementById('speak-trans').textContent=p.trans;
+  document.getElementById('speak-lv').textContent=p.level;
+  document.getElementById('speak-result').textContent='';
+  document.getElementById('speak-text').value='';
+}
+function nextPhrase(){phraseIdx=(phraseIdx+1)%speakingPhrases.length;showPhrase();}
+function toggleListening(){
+  if(!('webkitSpeechRecognition'in window||'SpeechRecognition'in window)){document.getElementById('speak-result').textContent='⚠️ Usa Chrome o Edge, o escribe la frase abajo.';return;}
+  if(isListening){stopListening();return;}
+  let SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  recognition=new SR();recognition.lang='en-US';recognition.continuous=false;recognition.interimResults=false;
+  recognition.onstart=()=>{isListening=true;document.getElementById('mic-btn').classList.add('on');document.getElementById('mic-icon').textContent='🔴';document.getElementById('mic-status').textContent='Escuchando… habla ahora';};
+  recognition.onresult=(e)=>checkSpokenPhrase(e.results[0][0].transcript);
+  recognition.onend=()=>stopListening();
+  recognition.onerror=()=>{stopListening();document.getElementById('speak-result').textContent='⚠️ Error de micrófono. Escribe la frase abajo.';};
+  recognition.start();
+}
+function stopListening(){isListening=false;if(recognition)recognition.stop();document.getElementById('mic-btn').classList.remove('on');document.getElementById('mic-icon').textContent='🎙️';document.getElementById('mic-status').textContent='Toca para hablar';}
+function checkSpokenPhrase(t){
+  let target=normalize(speakingPhrases[phraseIdx].text).replace(/[.,?!]/g,'');
+  let said=normalize(t).replace(/[.,?!]/g,'');
+  let w1=target.split(' '),w2=said.split(' ');
+  let score=Math.round(w1.filter(w=>w2.includes(w)).length/w1.length*100);
+  document.getElementById('speak-result').textContent=score>=85?`✅ ¡Excelente! "${t}" 🎉`:score>=60?`👍 Bien! "${t}" — intenta otra vez para mejorar.`:`❌ Escuchado: "${t}". Objetivo: "${speakingPhrases[phraseIdx].text}"`;
+}
+function checkSpokenText(){checkSpokenPhrase(document.getElementById('speak-text').value);}
+
+// ═══════════════════════════════════════════════════════════════
+// VOCAB / FLASHCARDS
+// ═══════════════════════════════════════════════════════════════
+let fcLevel='A1',fcIdx=0,fcFlipped=false;
+function setVocabLevel(lv){
+  fcLevel=lv;fcIdx=0;fcFlipped=false;
+  ['A1','A2','B1','B2','C1','C2'].forEach(l=>{let b=document.getElementById('vt-'+l);if(b)b.classList.toggle('active',l===lv);});
+  renderVocabUI();
+}
+function renderVocabUI(){
+  let cards=vocab[fcLevel];
+  if(!cards||!cards.length){fcLevel='A1';cards=vocab['A1'];}
+  if(fcIdx>=cards.length)fcIdx=0;
+  let c=cards[fcIdx];
+  let fc=document.getElementById('fc-card');fc.classList.remove('flipped');fcFlipped=false;
+  document.getElementById('fc-word').textContent=c.word;
+  document.getElementById('fc-pos').textContent='['+c.type+'] '+c.pron;
+  document.getElementById('fc-count').textContent=(fcIdx+1)+'/'+cards.length;
+}
+function flipCard(){
+  let c=vocab[fcLevel][fcIdx];
+  let fc=document.getElementById('fc-card');
+  fcFlipped=!fcFlipped;
+  if(fcFlipped){
+    fc.classList.add('flipped');
+    document.getElementById('fc-word').innerHTML=`<div class="fc-trans">${c.trans}</div><div class="fc-pron">${c.pron}</div>`;
+    document.getElementById('fc-pos').innerHTML=`<div class="fc-example"><i>${c.ex}</i></div>`;
+    state.vocabSeen++;checkBadges();saveState();
+  }else{
+    fc.classList.remove('flipped');
+    document.getElementById('fc-word').textContent=c.word;
+    document.getElementById('fc-pos').textContent='['+c.type+'] '+c.pron;
+  }
+}
+function nextCard(){let cards=vocab[fcLevel];fcIdx=(fcIdx+1)%cards.length;renderVocabUI();}
+function prevCard(){let cards=vocab[fcLevel];fcIdx=(fcIdx-1+cards.length)%cards.length;renderVocabUI();}
+
+// ═══════════════════════════════════════════════════════════════
+// CONFETTI & XP FLOAT
+// ═══════════════════════════════════════════════════════════════
+function spawnConfetti(){
+  let wrap=document.createElement('div');wrap.className='confetti-wrap';document.body.appendChild(wrap);
+  const colors=['#f72585','#7c3aed','#00f5d4','#ffd60a','#4cc9f0','#06d6a0','#fb8500'];
+  for(let i=0;i<55;i++){
+    let p=document.createElement('div');p.className='cp';
+    p.style.cssText=`left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;animation-duration:${1.5+Math.random()*2}s;animation-delay:${Math.random()*.8}s;border-radius:${Math.random()>.5?'50%':'2px'};`;
+    wrap.appendChild(p);
+  }
+  setTimeout(()=>{if(wrap.parentNode)wrap.remove();},4000);
+}
+function spawnXPFloat(text){
+  let el=document.createElement('div');el.className='xp-float';el.textContent=text;
+  el.style.cssText=`top:${35+Math.random()*20}%;left:${38+Math.random()*24}%;`;
+  document.body.appendChild(el);setTimeout(()=>{if(el.parentNode)el.remove();},1100);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════════
+loadState();
+updateHome();
+setVocabLevel('A1');
+loadSpeakingPhrase();
+initTTS();
+</script>
+</body></html>
